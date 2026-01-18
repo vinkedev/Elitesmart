@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Smart - Montres Connectées, Téléphones & Accessoires</title>
+    <title>Elite Smart - Votre Partenaire Technologie</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -13,7 +13,6 @@
             --secondary-dark: #E6C300;
             --dark: #1a1a2e;
             --light: #f8f9fa;
-            --gray: #6c757d;
             --white: #ffffff;
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
             --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
@@ -154,77 +153,126 @@
             color: var(--primary);
         }
 
-        /* Présentation Section */
-        .presentation {
-            padding: 120px 0 80px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        /* Hero Section avec image de montres en fond */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
             text-align: center;
-        }
-
-        .presentation-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .presentation h1 {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .presentation h1 span {
-            color: var(--secondary);
-        }
-
-        .presentation p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 30px;
-        }
-
-        .highlight-products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .highlight-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .highlight-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .highlight-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 50%;
+            padding: 180px 20px 100px;
+            margin-top: 80px;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span {
+            color: var(--secondary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* Boutons */
+        .btn {
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
             color: white;
-            font-size: 28px;
+            border: 2px solid var(--secondary);
         }
 
-        .highlight-card h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px);
         }
 
-        /* Section produits */
-        .products {
-            padding: 80px 0;
-            background: white;
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-small {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+
+        /* Présentation Section */
+        .presentation {
+            padding: 100px 0;
+            background: var(--white);
+            text-align: center;
         }
 
         .section-header {
@@ -250,6 +298,57 @@
             height: 4px;
             background: var(--secondary);
             border-radius: 2px;
+        }
+
+        .presentation-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .highlight-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .highlight-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .highlight-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 32px;
+        }
+
+        .highlight-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Section produits */
+        .products {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
         .products-grid {
@@ -337,52 +436,39 @@
         }
 
         .product-actions {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
+            margin-top: 20px;
         }
 
-        .btn {
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Machine à frappe effet */
+        .typewriter {
+            font-family: monospace;
+            overflow: hidden;
+            border-right: .15em solid var(--secondary);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            flex: 1;
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
         }
 
-        .btn-primary:hover {
-            background: var(--primary-light);
-            transform: translateY(-3px);
-        }
-
-        .btn-secondary {
-            background: var(--secondary);
-            color: var(--dark);
-            flex: 1;
-        }
-
-        .btn-secondary:hover {
-            background: var(--secondary-dark);
-            transform: translateY(-3px);
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--secondary) }
         }
 
         /* Pourquoi Elite Smart */
         .why-elite {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 100px 0;
+            background: var(--white);
         }
 
         .features-grid {
@@ -430,16 +516,10 @@
             font-size: 32px;
         }
 
-        .feature-card h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
         /* Témoignages */
         .testimonials {
-            padding: 80px 0;
-            background: white;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
         .testimonials-grid {
@@ -512,8 +592,8 @@
 
         /* Section contact */
         .contact {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 100px 0;
+            background: var(--white);
         }
 
         .contact-grid {
@@ -577,7 +657,7 @@
         .main-footer {
             background: var(--dark);
             color: white;
-            padding: 60px 0 30px;
+            padding: 80px 0 30px;
         }
 
         .footer-grid {
@@ -698,8 +778,8 @@
 
         /* Responsive */
         @media (max-width: 992px) {
-            .presentation h1 {
-                font-size: 2.5rem;
+            .hero h1 {
+                font-size: 2.8rem;
             }
             
             .features-grid,
@@ -739,13 +819,32 @@
                 gap: 20px;
             }
 
-            .presentation h1 {
-                font-size: 2rem;
+            .hero {
+                padding: 150px 20px 60px;
+                background-attachment: scroll;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
 
             .features-grid,
             .products-grid,
             .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-actions {
                 grid-template-columns: 1fr;
             }
 
@@ -756,14 +855,10 @@
             .footer-grid {
                 gap: 30px;
             }
-
-            .product-actions {
-                flex-direction: column;
-            }
         }
 
         @media (max-width: 480px) {
-            .presentation h1 {
+            .hero h1 {
                 font-size: 1.8rem;
             }
 
@@ -796,7 +891,8 @@
 
                 <nav class="main-nav">
                     <ul>
-                        <li><a href="#presentation">Accueil</a></li>
+                        <li><a href="#hero">Accueil</a></li>
+                        <li><a href="#presentation">Présentation</a></li>
                         <li><a href="#produits">Produits</a></li>
                         <li><a href="#pourquoi">Pourquoi Elite Smart</a></li>
                         <li><a href="#temoignages">Témoignages</a></li>
@@ -817,12 +913,31 @@
         </div>
     </header>
 
+    <!-- Hero Section avec image de montres -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Elite Smart <span class="typewriter">Votre partenaire privilégié</span></h1>
+                <p>Découvrez notre collection exclusive de montres connectées, téléphones portables de haute qualité et accessoires technologiques. L'excellence au service de votre quotidien connecté.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#produits" class="btn btn-primary">
+                        <i class="fas fa-eye"></i> Voir nos produits
+                    </a>
+                    <a href="https://wa.me/22674958509" class="btn btn-secondary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Commander maintenant
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Présentation Section -->
     <section class="presentation" id="presentation">
         <div class="container">
             <div class="presentation-content">
-                <h1>Elite Smart, <span>votre partenaire privilégié</span></h1>
-                <p>Découvrez notre sélection exclusive de montres connectées, téléphones portables de haute qualité et accessoires technologiques. L'excellence au service de votre quotidien connecté.</p>
+                <h2 class="typewriter">Elite Smart, votre excellence technologique</h2>
+                <p>Spécialiste des montres connectées, téléphones haut de gamme et accessoires technologiques, nous vous accompagnons dans votre transition numérique avec des produits de qualité et un service exceptionnel.</p>
                 
                 <div class="highlight-products">
                     <div class="highlight-card">
@@ -874,11 +989,11 @@
                         <div class="product-price">150.000 FCFA</div>
                         <p>Écran AMOLED, suivi santé 24/7, autonomie 7 jours, résistance à l'eau</p>
                         <div class="product-actions">
-                            <button class="btn btn-primary btn-details">
-                                <i class="fas fa-eye"></i> Détails
+                            <button class="btn btn-primary btn-small btn-view-details">
+                                <i class="fas fa-eye"></i> Voir détails
                             </button>
-                            <a href="https://wa.me/22674958509" class="btn btn-secondary btn-buy" target="_blank">
-                                <i class="fas fa-shopping-cart"></i> Acheter
+                            <a href="https://wa.me/22674958509" class="btn btn-secondary btn-small" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Commander
                             </a>
                         </div>
                     </div>
@@ -896,11 +1011,11 @@
                         <div class="product-price">350.000 FCFA</div>
                         <p>Écran 6.7", 256GB, triple caméra 108MP, charge rapide 65W</p>
                         <div class="product-actions">
-                            <button class="btn btn-primary btn-details">
-                                <i class="fas fa-eye"></i> Détails
+                            <button class="btn btn-primary btn-small btn-view-details">
+                                <i class="fas fa-eye"></i> Voir détails
                             </button>
-                            <a href="https://wa.me/22674958509" class="btn btn-secondary btn-buy" target="_blank">
-                                <i class="fas fa-shopping-cart"></i> Acheter
+                            <a href="https://wa.me/22674958509" class="btn btn-secondary btn-small" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Commander
                             </a>
                         </div>
                     </div>
@@ -918,11 +1033,11 @@
                         <div class="product-price">45.000 FCFA</div>
                         <p>Réduction de bruit active, son spatial, autonomie 8h, étui de charge</p>
                         <div class="product-actions">
-                            <button class="btn btn-primary btn-details">
-                                <i class="fas fa-eye"></i> Détails
+                            <button class="btn btn-primary btn-small btn-view-details">
+                                <i class="fas fa-eye"></i> Voir détails
                             </button>
-                            <a href="https://wa.me/22674958509" class="btn btn-secondary btn-buy" target="_blank">
-                                <i class="fas fa-shopping-cart"></i> Acheter
+                            <a href="https://wa.me/22674958509" class="btn btn-secondary btn-small" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Commander
                             </a>
                         </div>
                     </div>
@@ -940,11 +1055,11 @@
                         <div class="product-price">180.000 FCFA</div>
                         <p>GPS intégré, 50 modes sport, oxymètre, moniteur de sommeil</p>
                         <div class="product-actions">
-                            <button class="btn btn-primary btn-details">
-                                <i class="fas fa-eye"></i> Détails
+                            <button class="btn btn-primary btn-small btn-view-details">
+                                <i class="fas fa-eye"></i> Voir détails
                             </button>
-                            <a href="https://wa.me/22674958509" class="btn btn-secondary btn-buy" target="_blank">
-                                <i class="fas fa-shopping-cart"></i> Acheter
+                            <a href="https://wa.me/22674958509" class="btn btn-secondary btn-small" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Commander
                             </a>
                         </div>
                     </div>
@@ -1135,7 +1250,8 @@
                 <div class="footer-links">
                     <h3>Liens rapides</h3>
                     <ul>
-                        <li><a href="#presentation"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="#hero"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="#presentation"><i class="fas fa-chevron-right"></i> Présentation</a></li>
                         <li><a href="#produits"><i class="fas fa-chevron-right"></i> Produits</a></li>
                         <li><a href="#pourquoi"><i class="fas fa-chevron-right"></i> Pourquoi Elite Smart</a></li>
                         <li><a href="#temoignages"><i class="fas fa-chevron-right"></i> Témoignages</a></li>
@@ -1210,28 +1326,26 @@
         // Panier
         let cartCount = 0;
         const cartCountEl = document.querySelector('.cart-count');
-        const buyButtons = document.querySelectorAll('.btn-buy');
+        const buyButtons = document.querySelectorAll('.btn-secondary.btn-small');
         
         buyButtons.forEach(btn => {
             btn.addEventListener('click', function(e) {
-                if (!this.classList.contains('btn-buy')) return;
-                e.preventDefault();
-                
                 cartCount++;
                 cartCountEl.textContent = cartCount;
                 
                 // Notification
-                showNotification('Produit ajouté au panier ! Redirection vers WhatsApp...');
+                showNotification('Produit ajouté au panier !');
                 
-                // Redirection après 2 secondes
+                // Animation du compteur
+                cartCountEl.style.transform = 'scale(1.5)';
                 setTimeout(() => {
-                    window.open(this.href, '_blank');
-                }, 2000);
+                    cartCountEl.style.transform = 'scale(1)';
+                }, 300);
             });
         });
 
-        // Boutons Détails
-        const detailButtons = document.querySelectorAll('.btn-details');
+        // Boutons "Voir détails"
+        const detailButtons = document.querySelectorAll('.btn-view-details');
         
         detailButtons.forEach(btn => {
             btn.addEventListener('click', function() {
@@ -1272,7 +1386,7 @@
                         </div>
                         <div class="modal-actions">
                             <a href="https://wa.me/22674958509" class="btn btn-secondary" target="_blank" style="flex: 1;">
-                                <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                                <i class="fab fa-whatsapp"></i> Commander
                             </a>
                         </div>
                     </div>
@@ -1306,8 +1420,6 @@
                     padding: 30px;
                     max-width: 500px;
                     width: 90%;
-                    max-height: 90vh;
-                    overflow-y: auto;
                     animation: slideUp 0.3s ease;
                 }
                 
@@ -1328,7 +1440,7 @@
                     border: none;
                     font-size: 24px;
                     cursor: pointer;
-                    color: var(--gray);
+                    color: var(--dark);
                 }
                 
                 .product-price-large {
@@ -1449,6 +1561,31 @@
                 }
             });
         });
+
+        // Effet machine à écrire
+        function initTypewriter() {
+            const typewriterElements = document.querySelectorAll('.typewriter');
+            typewriterElements.forEach(el => {
+                const text = el.textContent;
+                el.textContent = '';
+                el.style.width = '0';
+                
+                setTimeout(() => {
+                    let i = 0;
+                    function type() {
+                        if (i < text.length) {
+                            el.textContent += text.charAt(i);
+                            i++;
+                            setTimeout(type, 100);
+                        }
+                    }
+                    type();
+                }, 1000);
+            });
+        }
+
+        // Démarrer l'effet machine à écrire
+        setTimeout(initTypewriter, 500);
 
         // Animation des cartes au scroll
         const observerOptions = {
