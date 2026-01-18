@@ -3,475 +3,1051 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechStyle - Smartwatches, Téléphones & Accessoires</title>
+    <title>TechStyle Elite - Smartwatches, Téléphones & Accessoires Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #0f172a;
-            --accent: #f59e0b;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --transition: all 0.3s ease;
-        }
-        
+        /* Reset et styles généraux */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
         }
-        
+
+        :root {
+            --primary-color: #0a2540;
+            --secondary-color: #00b4d8;
+            --accent-color: #ff6b6b;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
         body {
-            background-color: var(--light);
-            color: var(--secondary);
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark-color);
             line-height: 1.6;
+            background-color: var(--light-color);
+            animation: fadeIn 1s ease-out;
         }
-        
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+
+        h3 {
+            font-size: 1.6rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        /* Header */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo i {
-            color: var(--accent);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: var(--secondary);
-            font-weight: 600;
-            font-size: 17px;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        nav a:hover {
-            color: var(--primary);
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            bottom: -5px;
-            left: 0;
-            transition: var(--transition);
-        }
-        
-        nav a:hover::after {
-            width: 100%;
-        }
-        
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .header-actions i {
-            font-size: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .header-actions i:hover {
-            color: var(--primary);
-        }
-        
+
         .btn {
             display: inline-block;
-            background-color: var(--primary);
+            background-color: var(--secondary-color);
             color: white;
             padding: 12px 28px;
-            border-radius: 30px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            color: white;
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-        }
-        
-        .hero-text {
-            flex: 1;
-        }
-        
-        .hero-text h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero-text p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .hero-image {
-            flex: 1;
-            position: relative;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        
-        /* Categories Section */
-        .section-title {
-            text-align: center;
-            margin: 60px 0 40px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-        
-        .category-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: var(--transition);
-            text-align: center;
-            padding: 40px 20px;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-        
-        .category-icon {
-            font-size: 50px;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .category-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        
-        /* Products */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: var(--transition);
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-        
-        .product-img {
-            height: 220px;
-            background-color: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .product-img img {
-            max-width: 100%;
-            max-height: 180px;
-            transition: var(--transition);
-        }
-        
-        .product-card:hover .product-img img {
-            transform: scale(1.05);
-        }
-        
-        .product-info {
-            padding: 25px;
-        }
-        
-        .product-category {
-            color: var(--primary);
-            font-size: 14px;
+            border-radius: var(--border-radius);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
         }
-        
-        .product-title {
-            font-size: 20px;
+
+        .btn:hover {
+            background-color: #0096c7;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #051e36;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background-color: #ff5252;
+        }
+
+        .section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-center h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title {
+            margin-bottom: 50px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Header et navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            color: var(--primary-color);
+        }
+
+        .logo-text span {
+            color: var(--secondary-color);
+        }
+
+        .logo-icon {
+            color: var(--secondary-color);
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 37, 64, 0.9), rgba(0, 180, 216, 0.8)), url('https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            text-align: center;
+            padding: 180px 20px 100px;
+            margin-top: 80px;
+            animation: fadeIn 1.2s ease-out;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero .container {
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
-        
-        .product-price {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 15px;
+
+        #typing {
+            display: block;
+            font-size: 1.8rem;
+            margin: 20px 0 30px;
+            min-height: 60px;
+            color: var(--secondary-color);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
-        
-        .product-price span {
-            font-size: 16px;
-            color: var(--gray);
-            text-decoration: line-through;
-            margin-left: 10px;
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
         }
-        
-        /* Features */
-        .features {
+
+        /* Statistiques animées */
+        .stats {
+            background: linear-gradient(135deg, var(--primary-color), #1a3a5f);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Catégories */
+        .categories {
+            background-color: var(--white);
+            overflow: hidden;
+        }
+
+        .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            margin-bottom: 80px;
         }
-        
-        .feature {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+        .category-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
             transition: var(--transition);
-        }
-        
-        .feature:hover {
-            transform: translateY(-5px);
-        }
-        
-        .feature i {
-            font-size: 40px;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        /* Newsletter */
-        .newsletter {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            color: white;
-            padding: 70px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
             text-align: center;
-            border-radius: 20px;
-            margin-bottom: 80px;
         }
-        
-        .newsletter h2 {
-            font-size: 36px;
+
+        .category-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-icon {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .category-content {
+            padding: 25px;
+        }
+
+        .category-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Produits */
+        .products {
+            background-color: #f1f5f9;
+            overflow: hidden;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .badge.new { background: #28a745; }
+        .badge.hot { background: #dc3545; }
+        .badge.promo { background: #ffc107; color: #333; }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .product-price {
+            color: var(--secondary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
             margin-bottom: 15px;
         }
-        
-        .newsletter p {
-            max-width: 600px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
+
+        .product-price span {
+            color: var(--gray-color);
+            text-decoration: line-through;
+            font-size: 1rem;
+            margin-left: 10px;
         }
-        
-        .newsletter-form {
+
+        .product-actions {
             display: flex;
-            max-width: 500px;
-            margin: 0 auto;
             gap: 10px;
         }
-        
+
+        /* Services */
+        .services {
+            background-color: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #eee;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            background-color: white;
+        }
+
+        .service-icon {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            background-color: rgba(10, 37, 64, 0.1);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary-color), #1a3a5f);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 15px;
+            margin: 60px 0;
+        }
+
+        .newsletter h2 {
+            color: white;
+        }
+
+        .newsletter h2:after {
+            background-color: var(--secondary-color);
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 10px;
+        }
+
         .newsletter-form input {
             flex: 1;
-            padding: 16px 20px;
-            border-radius: 30px;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
             border: none;
-            font-size: 16px;
-            outline: none;
+            font-size: 1rem;
         }
-        
+
+        /* Testimonials */
+        .testimonials {
+            background-color: #f1f5f9;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Partenaires */
+        .partners {
+            background-color: white;
+        }
+
+        .partners-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .partner-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            background-color: #f8f9fa;
+            transition: var(--transition);
+        }
+
+        .partner-logo:hover {
+            background-color: #e9ecef;
+            transform: translateY(-5px);
+        }
+
+        /* Contact */
+        .contact {
+            background-color: var(--white);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            background-color: var(--primary-color);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            background-color: var(--secondary-color);
+            transform: rotateY(180deg);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Bouton WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,.3);
+            z-index: 999;
+            animation: pulse 1.5s infinite;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            background: #128C7E;
+            transform: scale(1.1);
+        }
+
         /* Footer */
         footer {
-            background-color: var(--secondary);
-            color: white;
+            background-color: var(--dark-color);
+            color: var(--white);
             padding: 60px 0 30px;
         }
-        
+
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
-        
-        .footer-column h3 {
-            font-size: 22px;
-            margin-bottom: 25px;
-            color: var(--accent);
+
+        .footer-logo h2 {
+            color: var(--white);
+            margin-bottom: 15px;
         }
-        
-        .footer-links {
-            list-style: none;
+
+        .footer-logo h2:after {
+            display: none;
         }
-        
-        .footer-links li {
-            margin-bottom: 12px;
+
+        .footer-links h3,
+        .footer-social h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
         }
-        
-        .footer-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: var(--transition);
+
+        .footer-links ul li {
+            margin-bottom: 10px;
         }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 5px;
+
+        .footer-links ul li a:hover {
+            color: var(--secondary-color);
         }
-        
+
         .social-icons {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
         }
-        
+
         .social-icons a {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: #334155;
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            color: white;
-            text-decoration: none;
             transition: var(--transition);
         }
-        
+
         .social-icons a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
+            background-color: var(--secondary-color);
+            color: #333;
+            transform: translateY(-5px);
         }
-        
+
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
-            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: var(--gray-color);
         }
-        
+
+        /* Carousels pour mobile */
+        .category-carousel-container,
+        .product-carousel-container {
+            display: none;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: visible;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            gap: 20px;
+            padding: 10px 20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        .carousel-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-wrapper {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .carousel-wrapper .category-card,
+        .carousel-wrapper .product-card {
+            flex: 0 0 calc(85vw - 40px);
+            min-width: calc(85vw - 40px);
+            scroll-snap-align: start;
+        }
+
+        .scroll-indicators {
+            display: none;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .scroll-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(10, 37, 64, 0.3);
+            transition: var(--transition);
+        }
+
+        .scroll-indicator.active {
+            background-color: var(--primary-color);
+            transform: scale(1.3);
+        }
+
+        /* Modal produit */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-color);
+            z-index: 10;
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
+            h1 {
+                font-size: 2.4rem;
             }
-            
-            .hero-text h1 {
-                font-size: 40px;
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
             }
         }
-        
+
         @media (max-width: 768px) {
-            .header-content {
+            h1 {
+                font-size: 1.8rem !important;
+            }
+            
+            h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
                 flex-direction: column;
-                gap: 20px;
+                padding: 20px;
+                box-shadow: var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                max-height: 0;
+                overflow: hidden;
             }
-            
-            nav ul {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+                max-height: 400px;
+                padding: 20px;
             }
-            
-            .hero-text h1 {
-                font-size: 32px;
+
+            .hero {
+                padding: 120px 15px 60px !important;
+                min-height: auto !important;
+                background-attachment: scroll !important;
             }
-            
+
+            .hero h1 {
+                font-size: 1.8rem !important;
+                margin-bottom: 15px;
+            }
+
+            #typing {
+                font-size: 1.1rem !important;
+                min-height: 40px;
+                margin: 10px 0 20px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .section {
+                padding: 50px 0 !important;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                width: 100%;
+                max-width: 300px;
+                margin: 5px auto;
+            }
+
+            .stat-item h3 {
+                font-size: 2.2rem;
+            }
+
+            .category-grid,
+            .product-grid {
+                display: none !important;
+            }
+
+            .category-carousel-container,
+            .product-carousel-container {
+                display: block !important;
+            }
+
+            .carousel-wrapper .product-image {
+                height: 200px !important;
+            }
+
             .newsletter-form {
                 flex-direction: column;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .scroll-indicators {
+                display: flex;
             }
         }
     </style>
@@ -479,28 +1055,37 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-clock"></i>
-                    <span>TechStyle</span>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-watch"></i>
                 </div>
-                
-                <nav>
-                    <ul>
-                        <li><a href="#accueil">Accueil</a></li>
-                        <li><a href="#produits">Produits</a></li>
-                        <li><a href="#categories">Catégories</a></li>
-                        <li><a href="#avantages">Avantages</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="header-actions">
-                    <i class="fas fa-search"></i>
+                <div class="logo-text">
+                    <h1>TechStyle <span>Elite</span></h1>
+                </div>
+            </div>
+            
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#categories">Catégories</a></li>
+                    <li><a href="#produits">Produits</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#partenaires">Partenaires</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
-                    <i class="fas fa-user"></i>
+                    <div class="cart-count">0</div>
                 </div>
+                <a href="tel:+22674958509" class="btn btn-primary">Appelez-nous</a>
             </div>
         </div>
     </header>
@@ -508,337 +1093,861 @@
     <!-- Hero Section -->
     <section class="hero" id="accueil">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Technologie de pointe pour un style de vie connecté</h1>
-                    <p>Découvrez notre collection exclusive de smartwatches, téléphones dernière génération et accessoires high-tech. Qualité, design et performance au service de votre quotidien.</p>
-                    <a href="#produits" class="btn">Découvrir nos produits</a>
+            <h1>L'Excellence Technologique à Votre Poignet</h1>
+            <span id="typing"></span>
+            <div class="hero-buttons">
+                <a href="#produits" class="btn">Découvrir nos produits 🚀</a>
+                <a href="https://wa.me/22674958509" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                </a>
+                <a href="#services" class="btn btn-accent">Nos Services Premium</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h3><span class="counter" data-target="5000">0</span>+</h3>
+                    <p>Clients satisfaits</p>
                 </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Smartwatches et téléphones">
+                <div class="stat-item">
+                    <h3><span class="counter" data-target="150">0</span>+</h3>
+                    <p>Produits premium</p>
+                </div>
+                <div class="stat-item">
+                    <h3><span class="counter" data-target="24">0</span>/7</h3>
+                    <p>Support client</p>
+                </div>
+                <div class="stat-item">
+                    <h3><span class="counter" data-target="98">0</span>%</h3>
+                    <p>Satisfaction clients</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Categories -->
-    <section class="container" id="categories">
-        <div class="section-title">
-            <h2>Nos Catégories</h2>
-            <p>Explorez notre gamme complète de produits high-tech pour répondre à tous vos besoins connectés</p>
-        </div>
-        
-        <div class="categories">
-            <div class="category-card">
-                <div class="category-icon">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <h3>Smartwatches</h3>
-                <p>Montres connectées dernier cri avec suivi santé, notifications et design élégant pour votre quotidien.</p>
+    <!-- Catégories -->
+    <section class="section categories" id="categories">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Nos Catégories Premium ⌚📱🎧</h2>
+                <p>Découvrez notre sélection exclusive de produits high-tech</p>
             </div>
             
-            <div class="category-card">
-                <div class="category-icon">
-                    <i class="fas fa-mobile-alt"></i>
+            <!-- Version Desktop -->
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Smartwatches</h3>
+                        <p>Montres connectées dernier cri avec suivi santé, notifications et design élégant.</p>
+                        <a href="#" class="btn btn-primary">Voir la collection</a>
+                    </div>
                 </div>
-                <h3>Téléphones</h3>
-                <p>Smartphones performants avec appareils photo professionnels, batteries longue durée et écrans immersifs.</p>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Téléphones & Tablettes</h3>
+                        <p>Smartphones et tablettes haute performance avec technologies de pointe.</p>
+                        <a href="#" class="btn btn-primary">Découvrir</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Accessoires</h3>
+                        <p>Écouteurs, chargeurs, étuis et accessoires premium pour votre quotidien.</p>
+                        <a href="#" class="btn btn-primary">Explorer</a>
+                    </div>
+                </div>
             </div>
             
-            <div class="category-card">
-                <div class="category-icon">
-                    <i class="fas fa-headphones"></i>
+            <!-- Version Mobile -->
+            <div class="category-carousel-container" style="display: none;">
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="category-content">
+                                <h3>Smartwatches</h3>
+                                <p>Montres connectées dernier cri avec suivi santé, notifications et design élégant.</p>
+                                <a href="#" class="btn btn-primary">Voir la collection</a>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="category-content">
+                                <h3>Téléphones & Tablettes</h3>
+                                <p>Smartphones et tablettes haute performance avec technologies de pointe.</p>
+                                <a href="#" class="btn btn-primary">Découvrir</a>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-headphones"></i>
+                            </div>
+                            <div class="category-content">
+                                <h3>Accessoires</h3>
+                                <p>Écouteurs, chargeurs, étuis et accessoires premium pour votre quotidien.</p>
+                                <a href="#" class="btn btn-primary">Explorer</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-indicators" id="category-indicators">
+                        <div class="scroll-indicator active"></div>
+                        <div class="scroll-indicator"></div>
+                        <div class="scroll-indicator"></div>
+                    </div>
                 </div>
-                <h3>Accessoires</h3>
-                <p>Écouteurs sans fil, chargeurs rapides, étuis de protection et bien plus pour compléter votre expérience.</p>
             </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="container" id="produits">
-        <div class="section-title">
-            <h2>Produits Populaires</h2>
-            <p>Découvrez nos produits les plus demandés, alliant technologie de pointe et design élégant</p>
-        </div>
-        
-        <div class="products">
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Smartwatch Pro X">
+    <!-- Produits -->
+    <section class="section products" id="produits">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Nos Best-Sellers 🔥</h2>
+                <p>Découvrez les produits les plus plébiscités par nos clients</p>
+            </div>
+            
+            <!-- Version Desktop -->
+            <div class="product-grid">
+                <!-- Produit 1 -->
+                <div class="product-card" data-product="1">
+                    <div class="product-image">
+                        <div class="badge hot">🔥 Populaire</div>
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Apple Watch Series 8">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Apple Watch Series 8</h3>
+                        <p>Montre connectée avec écran Retina toujours activé, suivi santé avancé.</p>
+                        <div class="product-price">299,000 FCFA <span>349,000 FCFA</span></div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary add-to-cart" data-product="1">Ajouter au panier</button>
+                            <a href="https://wa.me/22674958509?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20l'Apple%20Watch%20Series%208" class="btn btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="product-info">
-                    <div class="product-category">Smartwatch</div>
-                    <h3 class="product-title">Smartwatch Pro X</h3>
-                    <div class="product-price">249€ <span>299€</span></div>
-                    <a href="#" class="btn">Ajouter au panier</a>
+                
+                <!-- Produit 2 -->
+                <div class="product-card" data-product="2">
+                    <div class="product-image">
+                        <div class="badge new">Nouveau</div>
+                        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Samsung Galaxy S23">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Samsung Galaxy S23</h3>
+                        <p>Smartphone Android avec appareil photo 200MP, processeur Snapdragon 8 Gen 2.</p>
+                        <div class="product-price">450,000 FCFA</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary add-to-cart" data-product="2">Ajouter au panier</button>
+                            <a href="https://wa.me/22674958509?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20le%20Samsung%20Galaxy%20S23" class="btn btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Produit 3 -->
+                <div class="product-card" data-product="3">
+                    <div class="product-image">
+                        <div class="badge promo">Promo -15%</div>
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="AirPods Pro 2">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">AirPods Pro 2</h3>
+                        <p>Écouteurs sans fil avec réduction de bruit active et qualité sonore exceptionnelle.</p>
+                        <div class="product-price">85,000 FCFA <span>100,000 FCFA</span></div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary add-to-cart" data-product="3">Ajouter au panier</button>
+                            <a href="https://wa.me/22674958509?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20les%20AirPods%20Pro%202" class="btn btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Produit 4 -->
+                <div class="product-card" data-product="4">
+                    <div class="product-image">
+                        <div class="badge hot">🔥 Populaire</div>
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Fitbit Sense 2">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Fitbit Sense 2</h3>
+                        <p>Montre santé avec ECG, suivi du stress, température cutanée et GPS intégré.</p>
+                        <div class="product-price">120,000 FCFA</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary add-to-cart" data-product="4">Ajouter au panier</button>
+                            <a href="https://wa.me/22674958509?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20le%20Fitbit%20Sense%202" class="btn btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Phone Ultra 13">
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Téléphone</div>
-                    <h3 class="product-title">Phone Ultra 13</h3>
-                    <div class="product-price">899€ <span>999€</span></div>
-                    <a href="#" class="btn">Ajouter au panier</a>
+            <!-- Version Mobile -->
+            <div class="product-carousel-container" style="display: none;">
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <!-- Les mêmes produits que la version desktop -->
+                        <div class="product-card" data-product="1">
+                            <div class="product-image">
+                                <div class="badge hot">🔥 Populaire</div>
+                                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Apple Watch Series 8">
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title">Apple Watch Series 8</h3>
+                                <p>Montre connectée avec écran Retina toujours activé, suivi santé avancé.</p>
+                                <div class="product-price">299,000 FCFA <span>349,000 FCFA</span></div>
+                                <div class="product-actions">
+                                    <button class="btn btn-primary add-to-cart" data-product="1">Ajouter au panier</button>
+                                    <a href="https://wa.me/22674958509?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20l'Apple%20Watch%20Series%208" class="btn btn-whatsapp" target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card" data-product="2">
+                            <div class="product-image">
+                                <div class="badge new">Nouveau</div>
+                                <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Samsung Galaxy S23">
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title">Samsung Galaxy S23</h3>
+                                <p>Smartphone Android avec appareil photo 200MP, processeur Snapdragon 8 Gen 2.</p>
+                                <div class="product-price">450,000 FCFA</div>
+                                <div class="product-actions">
+                                    <button class="btn btn-primary add-to-cart" data-product="2">Ajouter au panier</button>
+                                    <a href="https://wa.me/22674958509?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20le%20Samsung%20Galaxy%20S23" class="btn btn-whatsapp" target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card" data-product="3">
+                            <div class="product-image">
+                                <div class="badge promo">Promo -15%</div>
+                                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="AirPods Pro 2">
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title">AirPods Pro 2</h3>
+                                <p>Écouteurs sans fil avec réduction de bruit active et qualité sonore exceptionnelle.</p>
+                                <div class="product-price">85,000 FCFA <span>100,000 FCFA</span></div>
+                                <div class="product-actions">
+                                    <button class="btn btn-primary add-to-cart" data-product="3">Ajouter au panier</button>
+                                    <a href="https://wa.me/22674958509?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20les%20AirPods%20Pro%202" class="btn btn-whatsapp" target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card" data-product="4">
+                            <div class="product-image">
+                                <div class="badge hot">🔥 Populaire</div>
+                                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Fitbit Sense 2">
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title">Fitbit Sense 2</h3>
+                                <p>Montre santé avec ECG, suivi du stress, température cutanée et GPS intégré.</p>
+                                <div class="product-price">120,000 FCFA</div>
+                                <div class="product-actions">
+                                    <button class="btn btn-primary add-to-cart" data-product="4">Ajouter au panier</button>
+                                    <a href="https://wa.me/22674958509?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20le%20Fitbit%20Sense%202" class="btn btn-whatsapp" target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-indicators" id="product-indicators">
+                        <div class="scroll-indicator active"></div>
+                        <div class="scroll-indicator"></div>
+                        <div class="scroll-indicator"></div>
+                        <div class="scroll-indicator"></div>
+                    </div>
                 </div>
             </div>
             
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Écouteurs Pro">
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Accessoire</div>
-                    <h3 class="product-title">Écouteurs Pro Max</h3>
-                    <div class="product-price">179€ <span>199€</span></div>
-                    <a href="#" class="btn">Ajouter au panier</a>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Smartwatch Fit">
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Smartwatch</div>
-                    <h3 class="product-title">Smartwatch Fit Plus</h3>
-                    <div class="product-price">159€</div>
-                    <a href="#" class="btn">Ajouter au panier</a>
-                </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="https://wa.me/22674958509?text=Bonjour,%20je%20voudrais%20voir%20tous%20vos%20produits%20smartwatch%20et%20téléphones" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Voir toute la collection
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="container" id="avantages">
-        <div class="section-title">
-            <h2>Pourquoi Nous Choisir</h2>
-            <p>Nous nous engageons à vous offrir la meilleure expérience d'achat de produits high-tech</p>
-        </div>
-        
-        <div class="features">
-            <div class="feature">
-                <i class="fas fa-shipping-fast"></i>
-                <h3>Livraison Rapide</h3>
-                <p>Livraison express offerte à partir de 50€ d'achat. Recevez vos produits en 24h-48h.</p>
+    <!-- Services -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Nos Services Premium 🛠️</h2>
+                <p>Nous offrons bien plus que des produits - un accompagnement complet</p>
             </div>
             
-            <div class="feature">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Garantie 2 Ans</h3>
-                <p>Tous nos produits bénéficient d'une garantie constructeur de 2 ans extensible.</p>
-            </div>
-            
-            <div class="feature">
-                <i class="fas fa-headset"></i>
-                <h3>Support 7j/7</h3>
-                <p>Notre équipe support est disponible 7 jours sur 7 pour répondre à vos questions.</p>
-            </div>
-            
-            <div class="feature">
-                <i class="fas fa-undo-alt"></i>
-                <h3>Retour Facile</h3>
-                <p>Vous avez 30 jours pour retourner un produit non satisfait, sans justificatif.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Installation & Configuration</h3>
+                    <p>Nous configurons vos nouveaux appareils, transférons vos données et personnalisons selon vos besoins.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Garantie Étendue</h3>
+                    <p>Garantie constructeur + extension de garantie optionnelle. Service après-vente réactif.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Reprise Ancien Appareil</h3>
+                    <p>Reprise de votre ancien smartphone ou montre connectée avec bon d'achat pour votre nouvel achat.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Service Cadeaux</h3>
+                    <p>Emballage cadeau premium, carte personnalisée et livraison surprise pour vos proches.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Newsletter -->
-    <section class="container">
-        <div class="newsletter">
-            <h2>Restez Connectés</h2>
-            <p>Inscrivez-vous à notre newsletter pour recevoir en exclusivité nos offres promotionnelles, nouveautés et conseils tech.</p>
+    <section class="newsletter">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Restez Connectés</h2>
+                <p>Inscrivez-vous pour recevoir nos offres exclusives, nouveautés et conseils tech</p>
+            </div>
             
             <form class="newsletter-form">
                 <input type="email" placeholder="Votre adresse email" required>
-                <button type="submit" class="btn">S'abonner</button>
+                <button type="submit" class="btn btn-accent">S'abonner</button>
             </form>
         </div>
     </section>
 
+    <!-- Témoignages -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Ce Que Disent Nos Clients ⭐</h2>
+                <p>Découvrez les expériences de nos clients satisfaits</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Service exceptionnel ! J'ai reçu mon Apple Watch en moins de 24h avec une configuration personnalisée. Je recommande vivement !"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AM</div>
+                        <div>
+                            <h4>Amadou M.</h4>
+                            <p>Entrepreneur, Ouagadougou</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "La meilleure boutique tech de la ville. Produits authentiques, prix compétitifs et un service après-vente irréprochable."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">FK</div>
+                        <div>
+                            <h4>Fatoumata K.</h4>
+                            <p>Professionnelle, Bobo-Dioulasso</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "J'ai acheté un smartphone pour mon fils et une montre connectée pour moi-même. Les deux produits sont de qualité premium."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JS</div>
+                        <div>
+                            <h4>Jean S.</h4>
+                            <p>Cadre, Koudougou</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partenaires -->
+    <section class="section partners" id="partenaires">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Nos Marques Partenaires 🤝</h2>
+                <p>Nous distribuons les plus grandes marques mondiales</p>
+            </div>
+            
+            <div class="partners-grid">
+                <div class="partner-logo">APPLE</div>
+                <div class="partner-logo">SAMSUNG</div>
+                <div class="partner-logo">FITBIT</div>
+                <div class="partner-logo">GARMIN</div>
+                <div class="partner-logo">HUAWEI</div>
+                <div class="partner-logo">XIAOMI</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Contactez-Nous</h2>
+                <p>Nous sommes à votre écoute pour toute demande</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Boutique Principale</h3>
+                            <p>123 Avenue de la Technologie<br>Ouagadougou, Burkina Faso</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Téléphone</h3>
+                            <p>+226 74 95 85 09<br>+226 73 85 84 46</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>contact@techstyle-elite.bf<br>ventes@techstyle-elite.bf</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Horaires</h3>
+                            <p>Lun - Sam: 8h30 - 19h00<br>Dimanche: 10h00 - 16h00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Votre nom complet" required>
+                        <input type="email" placeholder="Votre adresse email" required>
+                        <input type="tel" placeholder="Votre numéro de téléphone">
+                        <input type="text" placeholder="Sujet de votre message">
+                        <textarea placeholder="Votre message" required></textarea>
+                        <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
-                    <h3>TechStyle</h3>
-                    <p>Votre destination high-tech pour smartwatches, téléphones et accessoires de qualité supérieure.</p>
+                <div class="footer-logo">
+                    <h2>TechStyle <span style="color: var(--secondary-color);">Elite</span></h2>
+                    <p>Votre destination premium pour smartwatches, téléphones et accessoires high-tech au Burkina Faso.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#categories">Catégories</a></li>
+                        <li><a href="#produits">Produits</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#partenaires">Partenaires</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Suivez-nous</h3>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://wa.me/22674958509" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Catégories</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Smartwatches</a></li>
-                        <li><a href="#">Téléphones Portables</a></li>
-                        <li><a href="#">Écouteurs & Casques</a></li>
-                        <li><a href="#">Chargeurs & Câbles</a></li>
-                        <li><a href="#">Étuis & Protections</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Liens Utiles</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">À propos de nous</a></li>
-                        <li><a href="#">Contactez-nous</a></li>
-                        <li><a href="#">Livraison & Retours</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Mentions légales</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Rue de la Tech, Paris</li>
-                        <li><i class="fas fa-phone"></i> 01 23 45 67 89</li>
-                        <li><i class="fas fa-envelope"></i> contact@techstyle.fr</li>
-                        <li><i class="fas fa-clock"></i> Lun-Sam: 9h-20h</li>
-                    </ul>
+                    <p style="margin-top: 20px;">Paiements sécurisés acceptés : Mobile Money, Visa, Mastercard, cash à la livraison.</p>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 TechStyle. Tous droits réservés. | Site créé avec passion pour les passionnés de tech</p>
+                <p>&copy; 2023 TechStyle Elite. Tous droits réservés. | Site conçu avec passion pour les passionnés de technologie 🇧🇫</p>
             </div>
         </div>
     </footer>
 
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/22674958509" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal Produit -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
     <script>
-        // Smooth scroll pour les liens d'ancrage
-        document.querySelectorAll('nav a').forEach(anchor => {
+        // Effet machine à écrire
+        const texts = [
+            "Smartwatches • Téléphones • Accessoires",
+            "Technologie de Pointe & Design Élégant",
+            "Livraison Express & Installation Gratuite",
+            "Service Premium au Burkina Faso 🇧🇫"
+        ];
+        let index = 0, charIndex = 0;
+        const typingEl = document.getElementById("typing");
+
+        function type() {
+            if (charIndex < texts[index].length) {
+                typingEl.textContent += texts[index].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 60);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typingEl.textContent = texts[index].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, 40);
+            } else {
+                index = (index + 1) % texts.length;
+                setTimeout(type, 300);
+            }
+        }
+
+        setTimeout(type, 500);
+
+        // Menu mobile
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                });
+            });
+        }
+        
+        // Animation au scroll pour l'en-tête
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'var(--shadow)';
+            }
+        });
+        
+        // Compteurs animés
+        function animateCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
+                let update = () => {
+                    let target = +counter.dataset.target;
+                    let count = +counter.innerText;
+                    let inc = target / 100;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(update, 20);
+                    }
+                };
+                update();
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
                 const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                if (targetId === '#' || !targetId) return;
                 
-                if(targetElement) {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - headerHeight,
                         behavior: 'smooth'
                     });
                 }
             });
         });
-        
-        // Animation des cartes produits au défilement
+
+        // Intersection Observer pour animations
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            root: null,
+            rootMargin: '-50px 0px -100px 0px',
+            threshold: 0.1
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('section')) {
+                        entry.target.classList.add('visible');
+                    }
+                    
+                    if (entry.target.classList.contains('product-card') || 
+                        entry.target.classList.contains('category-card') || 
+                        entry.target.classList.contains('service-card')) {
+                        entry.target.classList.add('visible');
+                    }
+                    
+                    if (entry.target.classList.contains('stats')) {
+                        if (!entry.target.classList.contains('animated')) {
+                            entry.target.classList.add('animated');
+                            animateCounters();
+                        }
+                    }
                 }
             });
         }, observerOptions);
-        
-        // Animation des cartes produit
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(card);
-        });
-        
-        // Animation des catégories
-        document.querySelectorAll('.category-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s';
-            observer.observe(card);
-        });
-        
-        // Simulation d'ajout au panier
-        document.querySelectorAll('.product-card .btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const productName = this.closest('.product-info').querySelector('.product-title').textContent;
-                
-                // Animation du bouton
-                this.textContent = 'Ajouté !';
-                this.style.backgroundColor = '#10b981';
-                
-                setTimeout(() => {
-                    this.textContent = 'Ajouter au panier';
-                    this.style.backgroundColor = '';
-                }, 2000);
-                
-                // Notification visuelle
-                const notification = document.createElement('div');
-                notification.innerHTML = `<i class="fas fa-check-circle"></i> ${productName} a été ajouté à votre panier`;
-                notification.style.cssText = `
-                    position: fixed;
-                    top: 100px;
-                    right: 20px;
-                    background: #10b981;
-                    color: white;
-                    padding: 15px 20px;
-                    border-radius: 8px;
-                    z-index: 10000;
-                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    animation: slideIn 0.3s ease;
-                `;
-                
-                document.body.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.style.animation = 'slideOut 0.3s ease';
-                    setTimeout(() => notification.remove(), 300);
-                }, 3000);
-                
-                // Ajouter une animation au panier dans le header
-                const cartIcon = document.querySelector('.fa-shopping-cart');
-                cartIcon.style.transform = 'scale(1.3)';
-                cartIcon.style.color = '#f59e0b';
-                
-                setTimeout(() => {
-                    cartIcon.style.transform = '';
-                    cartIcon.style.color = '';
-                }, 500);
+
+        // Observer tous les éléments
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
             });
-        });
-        
-        // Gestion de la newsletter
-        const newsletterForm = document.querySelector('.newsletter-form');
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const emailInput = this.querySelector('input[type="email"]');
-            const email = emailInput.value;
             
-            if(email) {
-                emailInput.value = '';
-                emailInput.placeholder = 'Merci pour votre inscription !';
-                emailInput.style.backgroundColor = '#f0fdf4';
-                
-                setTimeout(() => {
-                    emailInput.placeholder = 'Votre adresse email';
-                    emailInput.style.backgroundColor = '';
-                }, 3000);
+            document.querySelectorAll('.product-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            document.querySelectorAll('.category-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            document.querySelectorAll('.service-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            const statsSection = document.querySelector('.stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+            
+            // Gestion des carrousels mobiles
+            setupMobileCarousels();
+            
+            // Panier
+            let cartCount = 0;
+            const cartCountEl = document.querySelector('.cart-count');
+            const addToCartBtns = document.querySelectorAll('.add-to-cart');
+            
+            addToCartBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    cartCount++;
+                    cartCountEl.textContent = cartCount;
+                    
+                    // Animation du bouton
+                    this.textContent = '✓ Ajouté';
+                    this.style.backgroundColor = '#28a745';
+                    
+                    setTimeout(() => {
+                        this.textContent = 'Ajouter au panier';
+                        this.style.backgroundColor = '';
+                    }, 2000);
+                    
+                    // Notification
+                    showNotification('Produit ajouté au panier !');
+                });
+            });
+            
+            // Formulaire de contact
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+                    contactForm.reset();
+                });
+            }
+            
+            // Newsletter
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = newsletterForm.querySelector('input[type="email"]').value;
+                    if (email) {
+                        newsletterForm.querySelector('input[type="email"]').value = '';
+                        showNotification('Merci pour votre inscription à notre newsletter !');
+                    }
+                });
             }
         });
-        
-        // Animation au chargement
-        window.addEventListener('load', () => {
-            document.querySelector('.hero-text').style.animation = 'fadeInUp 1s ease';
-            document.querySelector('.hero-image').style.animation = 'fadeInRight 1s ease 0.3s';
-        });
+
+        // Fonction pour gérer les carrousels mobiles
+        function setupMobileCarousels() {
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                document.querySelector('.category-carousel-container').style.display = 'block';
+                document.querySelector('.product-carousel-container').style.display = 'block';
+                document.querySelector('.category-grid').style.display = 'none';
+                document.querySelector('.product-grid').style.display = 'none';
+                
+                setupScrollIndicators('category');
+                setupScrollIndicators('product');
+            } else {
+                document.querySelector('.category-carousel-container').style.display = 'none';
+                document.querySelector('.product-carousel-container').style.display = 'none';
+                document.querySelector('.category-grid').style.display = 'grid';
+                document.querySelector('.product-grid').style.display = 'grid';
+            }
+            
+            window.addEventListener('resize', () => {
+                const isMobileNow = window.innerWidth <= 768;
+                
+                if (isMobileNow && !isMobile) {
+                    document.querySelector('.category-carousel-container').style.display = 'block';
+                    document.querySelector('.product-carousel-container').style.display = 'block';
+                    document.querySelector('.category-grid').style.display = 'none';
+                    document.querySelector('.product-grid').style.display = 'none';
+                    
+                    setupScrollIndicators('category');
+                    setupScrollIndicators('product');
+                } else if (!isMobileNow && isMobile) {
+                    document.querySelector('.category-carousel-container').style.display = 'none';
+                    document.querySelector('.product-carousel-container').style.display = 'none';
+                    document.querySelector('.category-grid').style.display = 'grid';
+                    document.querySelector('.product-grid').style.display = 'grid';
+                }
+            });
+        }
+
+        // Fonction pour les indicateurs de scroll
+        function setupScrollIndicators(type) {
+            const carouselWrapper = document.querySelector(`.${type}-carousel-container .carousel-wrapper`);
+            const indicators = document.querySelectorAll(`#${type}-indicators .scroll-indicator`);
+            
+            if (!carouselWrapper || !indicators.length) return;
+            
+            const cardWidth = carouselWrapper.querySelector(`.${type === 'category' ? 'category-card' : 'product-card'}`).offsetWidth;
+            const gap = 20;
+            const totalWidth = cardWidth + gap;
+            
+            carouselWrapper.addEventListener('scroll', () => {
+                const scrollPosition = carouselWrapper.scrollLeft;
+                const activeIndex = Math.round(scrollPosition / totalWidth);
+                
+                indicators.forEach((indicator, index) => {
+                    if (index === activeIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            });
+            
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    carouselWrapper.scrollTo({
+                        left: index * totalWidth,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+
+        // Fonction de notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: #28a745;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                z-index: 10000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                animation: fadeInUp 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
     </script>
 </body>
 </html>
