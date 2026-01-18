@@ -1,27 +1,23 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Smart - Solutions Technologiques Professionnelles</title>
-    <meta name="description" content="Expert en solutions technologiques haut de gamme : montres connectées, smartphones et accessoires pour professionnels exigeants.">
+    <title>Elite Smart - Votre Partenaire Technologie</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #0047AB;
-            --primary-dark: #003380;
             --primary-light: #2a6bc9;
             --secondary: #FFD700;
             --secondary-dark: #E6C300;
             --dark: #1a1a2e;
-            --dark-light: #2d2d44;
             --light: #f8f9fa;
             --white: #ffffff;
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
             --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
             --radius: 12px;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
         }
 
         * {
@@ -44,34 +40,24 @@
             padding: 0 20px;
         }
 
-        /* Header Pro */
+        /* Header */
         .main-header {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            transition: var(--transition);
-            padding: 15px 0;
-        }
-
-        .main-header.scrolled {
+            border-bottom: 3px solid var(--secondary);
             box-shadow: var(--shadow);
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
+            transition: var(--transition);
         }
 
         .header-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            padding: 15px 0;
         }
 
         .logo {
@@ -88,18 +74,12 @@
         .logo i {
             color: var(--secondary);
             font-size: 28px;
+            animation: rotateLogo 8s linear infinite;
         }
 
-        .expert-badge {
-            background: var(--gradient);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        @keyframes rotateLogo {
+            0% { transform: rotateY(0); }
+            100% { transform: rotateY(360deg); }
         }
 
         .main-nav ul {
@@ -112,19 +92,19 @@
             text-decoration: none;
             color: var(--dark);
             font-weight: 600;
-            font-size: 15px;
+            font-size: 16px;
             padding: 8px 0;
             position: relative;
             transition: var(--transition);
         }
 
-        .main-nav a::after {
+        .main-nav a::before {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: var(--secondary);
             transition: var(--transition);
         }
@@ -133,26 +113,37 @@
             color: var(--primary);
         }
 
-        .main-nav a:hover::after {
+        .main-nav a:hover::before {
             width: 100%;
         }
 
         .header-actions {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             align-items: center;
         }
 
-        .pro-indicator {
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary);
+            color: var(--dark);
+            font-size: 12px;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: var(--gradient);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
+            justify-content: center;
         }
 
         .menu-toggle {
@@ -162,34 +153,24 @@
             color: var(--primary);
         }
 
-        /* Hero Section Professionnelle */
+        /* Hero Section avec image de montres en fond */
         .hero {
-            background: linear-gradient(rgba(0, 35, 102, 0.9), rgba(0, 35, 102, 0.85)), 
-                        url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: var(--white);
             text-align: center;
-            padding: 200px 20px 120px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffd700' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.3;
+            padding: 180px 20px 100px;
+            margin-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
             animation: fadeInUp 1s ease-out;
         }
 
@@ -204,26 +185,6 @@
             }
         }
 
-        .expert-tag {
-            background: var(--secondary);
-            color: var(--dark);
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 30px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 800;
@@ -234,46 +195,14 @@
 
         .hero h1 span {
             color: var(--secondary);
-            position: relative;
         }
 
-        .hero h1 span::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--secondary);
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
+        .hero p {
+            font-size: 1.2rem;
             margin-bottom: 30px;
             opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            font-weight: 300;
-        }
-
-        .pro-features {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin: 50px 0;
-        }
-
-        .pro-feature {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 16px;
-        }
-
-        .pro-feature i {
-            color: var(--secondary);
-            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 30px;
         }
 
         .hero-buttons {
@@ -285,18 +214,19 @@
 
         /* Boutons */
         .btn {
-            padding: 18px 40px;
+            padding: 16px 32px;
             border-radius: 30px;
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             transition: var(--transition);
             border: none;
             cursor: pointer;
             font-size: 16px;
-            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-primary {
@@ -307,7 +237,7 @@
         .btn-primary:hover {
             background: var(--secondary-dark);
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
         }
 
         .btn-secondary {
@@ -322,83 +252,27 @@
             transform: translateY(-5px);
         }
 
-        /* Section Expertise */
-        .expertise {
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-small {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+
+        /* Présentation Section */
+        .presentation {
             padding: 100px 0;
             background: var(--white);
-        }
-
-        .expertise-header {
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto 60px;
-        }
-
-        .expertise-header h2 {
-            font-size: 2.8rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .expertise-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--secondary);
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .expertise-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 50px 40px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-            border: 2px solid transparent;
-        }
-
-        .expertise-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--secondary);
-        }
-
-        .expertise-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
-            color: white;
-            font-size: 32px;
-        }
-
-        .expertise-card h3 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        /* Section produits */
-        .products {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
         .section-header {
@@ -410,19 +284,77 @@
             font-size: 2.8rem;
             color: var(--primary);
             margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
         }
 
-        .section-subtitle {
-            color: var(--dark-light);
-            font-size: 1.2rem;
-            max-width: 600px;
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .presentation-content {
+            max-width: 800px;
             margin: 0 auto;
+        }
+
+        .highlight-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .highlight-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .highlight-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 32px;
+        }
+
+        .highlight-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Section produits */
+        .products {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
             margin-top: 50px;
         }
 
@@ -444,7 +376,7 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            padding: 10px 20px;
+            padding: 8px 15px;
             background: var(--secondary);
             color: var(--dark);
             font-weight: 700;
@@ -454,8 +386,8 @@
         }
 
         .product-image {
-            height: 280px;
-            background: white;
+            height: 250px;
+            background: linear-gradient(135deg, #f1f3f5, #e9ecef);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -476,8 +408,7 @@
         }
 
         .product-info {
-            padding: 30px;
-            border-top: 1px solid #eee;
+            padding: 25px;
         }
 
         .product-category {
@@ -486,20 +417,20 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: block;
         }
 
         .product-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--dark);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-weight: 700;
         }
 
         .product-price {
             color: var(--primary);
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
             margin-bottom: 20px;
         }
@@ -511,72 +442,215 @@
             margin-top: 20px;
         }
 
-        /* Section Process */
-        .process {
+        /* Machine à frappe effet */
+        .typewriter {
+            font-family: monospace;
+            overflow: hidden;
+            border-right: .15em solid var(--secondary);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--secondary) }
+        }
+
+        /* Pourquoi Elite Smart */
+        .why-elite {
             padding: 100px 0;
             background: var(--white);
         }
 
-        .process-steps {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             position: relative;
         }
 
-        .process-steps::before {
+        .feature-card::before {
             content: '';
             position: absolute;
-            top: 40px;
-            left: 10%;
-            right: 10%;
-            height: 3px;
-            background: var(--gradient);
-            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
-        .process-step {
-            text-align: center;
-            position: relative;
-            z-index: 2;
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .step-number {
+        .feature-icon {
             width: 80px;
             height: 80px;
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
+            margin: 0 auto 25px;
             color: white;
-            font-size: 24px;
-            font-weight: 800;
-            border: 5px solid white;
-            box-shadow: var(--shadow);
+            font-size: 32px;
         }
 
-        /* Section Stats */
-        .stats {
+        /* Témoignages */
+        .testimonials {
             padding: 100px 0;
-            background: var(--gradient);
-            color: white;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
-        .stats-grid {
+        .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
 
-        .stat-item h3 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 10px;
+        .testimonial-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 80px;
             color: var(--secondary);
+            opacity: 0.2;
+            font-family: serif;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .client-details h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .client-rating {
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        /* Section contact */
+        .contact {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 18px 25px;
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: var(--radius);
+            font-size: 16px;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,71,171,0.1);
         }
 
         /* Footer */
@@ -612,6 +686,58 @@
             margin-bottom: 20px;
         }
 
+        .footer-links h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
         .copyright {
             text-align: center;
             padding-top: 30px;
@@ -637,6 +763,12 @@
             box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
             z-index: 1000;
             transition: var(--transition);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .whatsapp-float:hover {
@@ -650,8 +782,10 @@
                 font-size: 2.8rem;
             }
             
-            .process-steps::before {
-                display: none;
+            .features-grid,
+            .products-grid,
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -686,16 +820,12 @@
             }
 
             .hero {
-                padding: 150px 20px 80px;
+                padding: 150px 20px 60px;
+                background-attachment: scroll;
             }
 
             .hero h1 {
                 font-size: 2.2rem;
-            }
-
-            .pro-features {
-                flex-direction: column;
-                gap: 20px;
             }
 
             .hero-buttons {
@@ -708,9 +838,9 @@
                 justify-content: center;
             }
 
-            .expertise-grid,
+            .features-grid,
             .products-grid,
-            .stats-grid {
+            .testimonials-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -718,8 +848,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .header-actions .pro-indicator {
-                display: none;
+            .contact-grid {
+                gap: 30px;
+            }
+
+            .footer-grid {
+                gap: 30px;
             }
         }
 
@@ -732,32 +866,23 @@
                 font-size: 2rem;
             }
 
-            .expertise-card,
-            .product-card {
+            .highlight-card,
+            .feature-card,
+            .product-card,
+            .testimonial-card {
                 padding: 30px 20px;
-            }
-
-            .expert-tag {
-                padding: 10px 20px;
-                font-size: 12px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header Professionnel -->
+    <!-- Header -->
     <header class="main-header">
         <div class="container">
             <div class="header-inner">
-                <div class="logo-container">
-                    <div class="logo">
-                        <i class="fas fa-watch"></i>
-                        <span>Elite Smart</span>
-                    </div>
-                    <div class="expert-badge">
-                        <i class="fas fa-certificate"></i>
-                        EXPERT TECH
-                    </div>
+                <div class="logo">
+                    <i class="fas fa-watch"></i>
+                    <span>Elite Smart</span>
                 </div>
 
                 <div class="menu-toggle">
@@ -767,172 +892,141 @@
                 <nav class="main-nav">
                     <ul>
                         <li><a href="#hero">Accueil</a></li>
-                        <li><a href="#expertise">Expertise</a></li>
-                        <li><a href="#produits">Solutions Pro</a></li>
-                        <li><a href="#process">Processus</a></li>
-                        <li><a href="#stats">Impact</a></li>
+                        <li><a href="#presentation">Présentation</a></li>
+                        <li><a href="#produits">Produits</a></li>
+                        <li><a href="#pourquoi">Pourquoi Elite Smart</a></li>
+                        <li><a href="#temoignages">Témoignages</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
 
                 <div class="header-actions">
-                    <div class="pro-indicator">
-                        <i class="fas fa-crown"></i>
-                        Solutions Professionnelles
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="cart-count">0</div>
                     </div>
-                    <a href="tel:+22674958509" class="btn btn-primary btn-small">
-                        <i class="fas fa-phone"></i> Expertise
+                    <a href="tel:+22674958509" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Appeler
                     </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section Professionnelle -->
+    <!-- Hero Section avec image de montres -->
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="expert-tag">
-                    <i class="fas fa-crown"></i> Solutions Technologiques Expertes
-                </div>
-                
-                <h1>Elite Smart : <span>L'Excellence Technologique</span></h1>
-                
-                <p class="hero-subtitle">
-                    Depuis plus de 10 ans, nous concevons et fournissons des solutions technologiques sur mesure pour les professionnels exigeants. 
-                    Votre partenaire de confiance en connectivité avancée.
-                </p>
-                
-                <div class="pro-features">
-                    <div class="pro-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Expertise technique certifiée</span>
-                    </div>
-                    <div class="pro-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Solutions sur mesure</span>
-                    </div>
-                    <div class="pro-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Support premium 24/7</span>
-                    </div>
-                </div>
+                <h1>Elite Smart <span class="typewriter">Votre partenaire privilégié</span></h1>
+                <p>Découvrez notre collection exclusive de montres connectées, téléphones portables de haute qualité et accessoires technologiques. L'excellence au service de votre quotidien connecté.</p>
                 
                 <div class="hero-buttons">
                     <a href="#produits" class="btn btn-primary">
-                        <i class="fas fa-chart-line"></i> Solutions Professionnelles
+                        <i class="fas fa-eye"></i> Voir nos produits
                     </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-calendar-check"></i> Consultation Expert
+                    <a href="https://wa.me/22674958509" class="btn btn-secondary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Commander maintenant
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section Expertise -->
-    <section class="expertise" id="expertise">
-        <div class="container">
-            <div class="expertise-header">
-                <h2>Notre Expertise Technique</h2>
-                <p>Des solutions pensées par des experts pour répondre aux besoins spécifiques des professionnels</p>
-            </div>
+    
+    
 
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-                    <h3>Ingénierie Avancée</h3>
-                    <p>Nos produits intègrent les dernières innovations technologiques avec une attention particulière aux détails techniques et à la fiabilité.</p>
-                </div>
-
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3>Conseil Personnalisé</h3>
-                    <p>Notre équipe d'experts analyse vos besoins spécifiques pour vous proposer la solution technologique la plus adaptée.</p>
-                </div>
-
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Support Premium</h3>
-                    <p>Un accompagnement technique de premier ordre avant, pendant et après l'implémentation de nos solutions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Solutions Professionnelles -->
+    <!-- Produits Section -->
     <section class="products" id="produits">
         <div class="container">
             <div class="section-header">
-                <h2>Solutions Professionnelles</h2>
-                <p class="section-subtitle">Des technologies de pointe sélectionnées pour leur performance, fiabilité et intégration professionnelle</p>
+                <h2>Nos Produits</h2>
+                <p>Découvrez notre collection exclusive</p>
             </div>
 
             <div class="products-grid">
+                <!-- Produit 1 -->
                 <div class="product-card">
-                    <div class="product-badge">ÉLITE PRO</div>
+                    <div class="product-badge">BEST SELLER</div>
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Smartwatch Pro">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Smartwatch Elite">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">SOLUTION PROFESSIONNELLE</span>
-                        <h3 class="product-title">SmartWatch Pro Suite</h3>
-                        <div class="product-price">À partir de 250.000 FCFA</div>
-                        <p>Système intégré de gestion du temps, suivi santé avancé, compatibilité ERP, sécurité militaire des données.</p>
+                        <span class="product-category">MONTRE CONNECTÉE</span>
+                        <h3 class="product-title">Elite Watch Pro</h3>
+                        <div class="product-price">150.000 FCFA</div>
+                        <p>Écran AMOLED, suivi santé 24/7, autonomie 7 jours, résistance à l'eau</p>
                         <div class="product-actions">
                             <button class="btn btn-primary btn-small btn-view-details">
-                                <i class="fas fa-file-contract"></i> Devis Pro
+                                <i class="fas fa-eye"></i> Voir détails
                             </button>
                             <a href="https://wa.me/22674958509" class="btn btn-secondary btn-small" target="_blank">
-                                <i class="fas fa-comments"></i> Consultation
+                                <i class="fas fa-shopping-cart"></i> Commander
                             </a>
                         </div>
                     </div>
                 </div>
 
+                <!-- Produit 2 -->
                 <div class="product-card">
-                    <div class="product-badge">ENTERPRISE</div>
+                    <div class="product-badge">NOUVEAU</div>
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Smartphone Entreprise">
+                        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Smartphone Elite">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">SOLUTION MOBILE PRO</span>
-                        <h3 class="product-title">Mobile Business Suite</h3>
-                        <div class="product-price">À partir de 450.000 FCFA</div>
-                        <p>Écosystème mobile sécurisé, gestion multi-appareils, support VPN intégré, solutions de paiement sécurisées.</p>
+                        <span class="product-category">SMARTPHONE</span>
+                        <h3 class="product-title">Elite Phone X</h3>
+                        <div class="product-price">350.000 FCFA</div>
+                        <p>Écran 6.7", 256GB, triple caméra 108MP, charge rapide 65W</p>
                         <div class="product-actions">
                             <button class="btn btn-primary btn-small btn-view-details">
-                                <i class="fas fa-file-contract"></i> Devis Pro
+                                <i class="fas fa-eye"></i> Voir détails
                             </button>
                             <a href="https://wa.me/22674958509" class="btn btn-secondary btn-small" target="_blank">
-                                <i class="fas fa-comments"></i> Consultation
+                                <i class="fas fa-shopping-cart"></i> Commander
                             </a>
                         </div>
                     </div>
                 </div>
 
+                <!-- Produit 3 -->
                 <div class="product-card">
-                    <div class="product-badge">CORPORATE</div>
+                    <div class="product-badge">PROMO</div>
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Système Audio">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Écouteurs Elite">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">SOLUTION COLLABORATION</span>
-                        <h3 class="product-title">Audio Conference Pro</h3>
-                        <div class="product-price">À partir de 85.000 FCFA</div>
-                        <p>Système audio professionnel pour réunions, réduction de bruit active, intégration Teams/Zoom, gestion multi-salles.</p>
+                        <span class="product-category">ACCESSOIRES</span>
+                        <h3 class="product-title">Elite Buds Pro</h3>
+                        <div class="product-price">45.000 FCFA</div>
+                        <p>Réduction de bruit active, son spatial, autonomie 8h, étui de charge</p>
                         <div class="product-actions">
                             <button class="btn btn-primary btn-small btn-view-details">
-                                <i class="fas fa-file-contract"></i> Devis Pro
+                                <i class="fas fa-eye"></i> Voir détails
                             </button>
                             <a href="https://wa.me/22674958509" class="btn btn-secondary btn-small" target="_blank">
-                                <i class="fas fa-comments"></i> Consultation
+                                <i class="fas fa-shopping-cart"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 4 -->
+                <div class="product-card">
+                    <div class="product-badge">TOP</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Montre Sport">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">MONTRE CONNECTÉE</span>
+                        <h3 class="product-title">Elite Sport Watch</h3>
+                        <div class="product-price">180.000 FCFA</div>
+                        <p>GPS intégré, 50 modes sport, oxymètre, moniteur de sommeil</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-small btn-view-details">
+                                <i class="fas fa-eye"></i> Voir détails
+                            </button>
+                            <a href="https://wa.me/22674958509" class="btn btn-secondary btn-small" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Commander
                             </a>
                         </div>
                     </div>
@@ -941,68 +1035,169 @@
         </div>
     </section>
 
-    <!-- Processus Professionnel -->
-    <section class="process" id="process">
+    <!-- Pourquoi Elite Smart -->
+    <section class="why-elite" id="pourquoi">
         <div class="container">
             <div class="section-header">
-                <h2>Notre Processus Expert</h2>
-                <p class="section-subtitle">Une méthodologie éprouvée pour garantir le succès de chaque projet</p>
+                <h2>Pourquoi Elite Smart</h2>
+                <p>Les avantages qui font la différence</p>
             </div>
 
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">01</div>
-                    <h3>Analyse des Besoins</h3>
-                    <p>Évaluation approfondie de vos besoins spécifiques et de votre environnement technique.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Livraison Gratuite</h3>
+                    <p>Livraison offerte à Ouagadougou pour toutes vos commandes. Service rapide et fiable.</p>
                 </div>
 
-                <div class="process-step">
-                    <div class="step-number">02</div>
-                    <h3>Conception sur Mesure</h3>
-                    <p>Développement d'une solution adaptée à vos exigences professionnelles.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Garantie</h3>
+                    <p>Tous nos produits bénéficient d'une garantie constructeur avec support technique dédié.</p>
                 </div>
 
-                <div class="process-step">
-                    <div class="step-number">03</div>
-                    <h3>Implémentation</h3>
-                    <p>Déploiement et configuration par nos experts certifiés.</p>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">04</div>
-                    <h3>Support Continu</h3>
-                    <p>Accompagnement et optimisation continue de votre solution.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Support Client</h3>
+                    <p>Notre équipe d'experts est disponible pour vous accompagner avant et après votre achat.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Statistiques -->
-    <section class="stats" id="stats">
+    <!-- Témoignages -->
+    <section class="testimonials" id="temoignages">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>500+</h3>
-                    <p>Projets Professionnels</p>
+            <div class="section-header">
+                <h2>Témoignages Clients</h2>
+                <p>Ce que disent nos clients satisfaits</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Excellent service client et produits de qualité. Ma montre connectée fonctionne parfaitement depuis 6 mois. Je recommande vivement Elite Smart !"</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="client-avatar">AK</div>
+                        <div class="client-details">
+                            <h4>Amadou Konaté</h4>
+                            <div class="client-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <h3>10+</h3>
-                    <p>Années d'Expertise</p>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Livraison ultra rapide à Ouagadougou. Le téléphone est exactement comme décrit. Le support m'a bien aidé pour la configuration."</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="client-avatar">FS</div>
+                        <div class="client-details">
+                            <h4>Fatou Sarr</h4>
+                            <div class="client-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <h3>98%</h3>
-                    <p>Taux de Satisfaction</p>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"J'ai acheté des écouteurs et une montre. Les deux produits sont excellents. La garantie offre une vraie tranquillité d'esprit."</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="client-avatar">MD</div>
+                        <div class="client-details">
+                            <h4>Moussa Diallo</h4>
+                            <div class="client-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p>Support Technique</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contactez-nous</h2>
+                <p>Nous sommes à votre écoute</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Notre Adresse</h4>
+                            <p>Ouagadougou, Burkina Faso<br>Zone commerciale principale</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Téléphone</h4>
+                            <p>+226 74 95 85 09<br>+226 73 85 84 46</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Horaires d'ouverture</h4>
+                            <p>Lundi - Samedi: 8h00 - 19h00<br>Dimanche: 10h00 - 16h00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Votre nom complet" required>
+                        <input type="email" placeholder="Votre email" required>
+                        <input type="tel" placeholder="Votre téléphone">
+                        <textarea placeholder="Votre message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Envoyer le message
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="main-footer" id="contact">
+    <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
@@ -1010,36 +1205,49 @@
                         <i class="fas fa-watch"></i>
                         <span>Elite Smart</span>
                     </div>
-                    <p><strong>Expert en solutions technologiques professionnelles</strong>. Nous concevons et implémentons des solutions sur mesure pour les entreprises exigeantes depuis plus de 10 ans.</p>
-                    <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> <strong>Support Pro:</strong> +226 74 95 85 09</p>
-                        <p><i class="fas fa-envelope"></i> <strong>Email Pro:</strong> pro@elitesmart.bf</p>
+                    <p>Votre partenaire privilégié pour les montres connectées, téléphones portables de haute qualité et accessoires technologiques.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
                 <div class="footer-links">
-                    <h3>Solutions</h3>
+                    <h3>Liens rapides</h3>
                     <ul>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Mobile Professionnel</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Wearables Entreprise</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Collaboration</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Sécurité</a></li>
+                        <li><a href="#hero"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="#presentation"><i class="fas fa-chevron-right"></i> Présentation</a></li>
+                        <li><a href="#produits"><i class="fas fa-chevron-right"></i> Produits</a></li>
+                        <li><a href="#pourquoi"><i class="fas fa-chevron-right"></i> Pourquoi Elite Smart</a></li>
+                        <li><a href="#temoignages"><i class="fas fa-chevron-right"></i> Témoignages</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-links">
-                    <h3>Expertise</h3>
+                    <h3>Produits</h3>
                     <ul>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Conseil Technique</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Déploiement</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Formation</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Support Pro</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Montres Connectées</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Téléphones Portables</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Accessoires</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Nouveautés</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="tel:+22674958509"><i class="fas fa-phone"></i> +226 74 95 85 09</a></li>
+                        <li><a href="mailto:contact@elitesmart.bf"><i class="fas fa-envelope"></i> contact@elitesmart.bf</a></li>
+                        <li><a href="https://wa.me/22674958509" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="copyright">
-                <p>&copy; 2024 Elite Smart Solutions Professionnelles. Tous droits réservés. | Expertise certifiée en technologies avancées</p>
+                <p>&copy; 2024 Elite Smart. Tous droits réservés. | Votre excellence technologique à Ouagadougou 🇧🇫</p>
             </div>
         </div>
     </footer>
@@ -1061,81 +1269,222 @@
             icon.classList.toggle('fa-times');
         });
 
-        // Scroll effect
+        // Fermer menu en cliquant sur un lien
+        document.querySelectorAll('.main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Animation au scroll
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.main-header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.1)';
             } else {
-                header.classList.remove('scrolled');
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'var(--shadow)';
             }
         });
 
-        // Animation des cartes
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observer les cartes
-        document.querySelectorAll('.expertise-card, .product-card, .process-step, .stat-item').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') return;
+        // Panier
+        let cartCount = 0;
+        const cartCountEl = document.querySelector('.cart-count');
+        const buyButtons = document.querySelectorAll('.btn-secondary.btn-small');
+        
+        buyButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                cartCount++;
+                cartCountEl.textContent = cartCount;
                 
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                // Notification
+                showNotification('Produit ajouté au panier !');
                 
-                if (targetElement) {
-                    const headerHeight = document.querySelector('.main-header').offsetHeight;
-                    window.scrollTo({
-                        top: targetElement.offsetTop - headerHeight,
-                        behavior: 'smooth'
-                    });
-                }
+                // Animation du compteur
+                cartCountEl.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    cartCountEl.style.transform = 'scale(1)';
+                }, 300);
             });
         });
 
-        // Boutons "Devis Pro"
-        document.querySelectorAll('.btn-view-details').forEach(btn => {
+        // Boutons "Voir détails"
+        const detailButtons = document.querySelectorAll('.btn-view-details');
+        
+        detailButtons.forEach(btn => {
             btn.addEventListener('click', function() {
                 const productCard = this.closest('.product-card');
                 const productTitle = productCard.querySelector('.product-title').textContent;
+                const productPrice = productCard.querySelector('.product-price').textContent;
+                const productDesc = productCard.querySelector('p').textContent;
                 
-                // Redirection WhatsApp avec message professionnel
-                const message = `Bonjour, je souhaite obtenir un devis professionnel pour : ${productTitle}`;
-                const whatsappUrl = `https://wa.me/22674958509?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
+                showProductDetails({
+                    title: productTitle,
+                    price: productPrice,
+                    description: productDesc
+                });
             });
         });
 
+        // Fonction pour afficher les détails du produit
+        function showProductDetails(product) {
+            const modalHTML = `
+                <div class="modal-overlay">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>${product.title}</h3>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="product-price-large">${product.price}</div>
+                            <p>${product.description}</p>
+                            <div class="modal-features">
+                                <h4>Caractéristiques :</h4>
+                                <ul>
+                                    <li>Garantie 2 ans</li>
+                                    <li>Livraison gratuite à Ouagadougou</li>
+                                    <li>Support technique 24/7</li>
+                                    <li>Retour sous 14 jours</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-actions">
+                            <a href="https://wa.me/22674958509" class="btn btn-secondary" target="_blank" style="flex: 1;">
+                                <i class="fab fa-whatsapp"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            const modal = document.createElement('div');
+            modal.innerHTML = modalHTML;
+            document.body.appendChild(modal);
+            
+            // CSS pour le modal
+            const modalStyle = document.createElement('style');
+            modalStyle.textContent = `
+                .modal-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0,0,0,0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2000;
+                    animation: fadeIn 0.3s ease;
+                }
+                
+                .modal-content {
+                    background: white;
+                    border-radius: var(--radius);
+                    padding: 30px;
+                    max-width: 500px;
+                    width: 90%;
+                    animation: slideUp 0.3s ease;
+                }
+                
+                .modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 20px;
+                }
+                
+                .modal-header h3 {
+                    color: var(--primary);
+                    margin: 0;
+                }
+                
+                .close-modal {
+                    background: none;
+                    border: none;
+                    font-size: 24px;
+                    cursor: pointer;
+                    color: var(--dark);
+                }
+                
+                .product-price-large {
+                    font-size: 1.8rem;
+                    color: var(--primary);
+                    font-weight: 800;
+                    margin-bottom: 20px;
+                }
+                
+                .modal-features {
+                    margin-top: 20px;
+                }
+                
+                .modal-features ul {
+                    list-style: none;
+                    padding-left: 0;
+                }
+                
+                .modal-features li {
+                    padding: 8px 0;
+                    border-bottom: 1px solid #eee;
+                }
+                
+                .modal-features li:before {
+                    content: '✓';
+                    color: var(--secondary);
+                    font-weight: bold;
+                    margin-right: 10px;
+                }
+                
+                .modal-actions {
+                    margin-top: 30px;
+                }
+                
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                
+                @keyframes slideUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(50px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `;
+            
+            document.head.appendChild(modalStyle);
+            
+            // Fermer le modal
+            modal.querySelector('.close-modal').addEventListener('click', () => {
+                modal.remove();
+                modalStyle.remove();
+            });
+            
+            modal.querySelector('.modal-overlay').addEventListener('click', (e) => {
+                if (e.target === modal.querySelector('.modal-overlay')) {
+                    modal.remove();
+                    modalStyle.remove();
+                }
+            });
+        }
+
         // Notification
-        function showNotification(message, type = 'success') {
+        function showNotification(message) {
             const notification = document.createElement('div');
             notification.textContent = message;
             notification.style.cssText = `
                 position: fixed;
                 top: 100px;
                 right: 30px;
-                background: ${type === 'success' ? '#25D366' : '#FFD700'};
-                color: ${type === 'success' ? 'white' : 'var(--dark)'};
+                background: var(--secondary);
+                color: var(--dark);
                 padding: 15px 25px;
                 border-radius: var(--radius);
                 z-index: 10000;
@@ -1151,6 +1500,82 @@
                 setTimeout(() => notification.remove(), 300);
             }, 3000);
         }
+
+        // Formulaires
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Message envoyé ! Nous vous répondrons rapidement.');
+                this.reset();
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('.main-header').offsetHeight;
+                    window.scrollTo({
+                        top: targetElement.offsetTop - headerHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Effet machine à écrire
+        function initTypewriter() {
+            const typewriterElements = document.querySelectorAll('.typewriter');
+            typewriterElements.forEach(el => {
+                const text = el.textContent;
+                el.textContent = '';
+                el.style.width = '0';
+                
+                setTimeout(() => {
+                    let i = 0;
+                    function type() {
+                        if (i < text.length) {
+                            el.textContent += text.charAt(i);
+                            i++;
+                            setTimeout(type, 100);
+                        }
+                    }
+                    type();
+                }, 1000);
+            });
+        }
+
+        // Démarrer l'effet machine à écrire
+        setTimeout(initTypewriter, 500);
+
+        // Animation des cartes au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer les cartes
+        document.querySelectorAll('.highlight-card, .product-card, .feature-card, .testimonial-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
 
         // CSS pour les animations
         const style = document.createElement('style');
