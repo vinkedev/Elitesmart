@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStyle - Smartwatches, Téléphones & Accessoires</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 17px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .header-actions i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .header-actions i:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        /* Categories Section */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .category-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .category-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        /* Products */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 220px;
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .product-img img {
+            max-width: 100%;
+            max-height: 180px;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 25px;
+        }
+        
+        .product-category {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .product-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .product-price span {
+            font-size: 16px;
+            color: var(--gray);
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 70px 0;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 80px;
+        }
+        
+        .newsletter h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 20px;
+            border-radius: 30px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 32px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-clock"></i>
+                    <span>TechStyle</span>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#produits">Produits</a></li>
+                        <li><a href="#categories">Catégories</a></li>
+                        <li><a href="#avantages">Avantages</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Technologie de pointe pour un style de vie connecté</h1>
+                    <p>Découvrez notre collection exclusive de smartwatches, téléphones dernière génération et accessoires high-tech. Qualité, design et performance au service de votre quotidien.</p>
+                    <a href="#produits" class="btn">Découvrir nos produits</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Smartwatches et téléphones">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="container" id="categories">
+        <div class="section-title">
+            <h2>Nos Catégories</h2>
+            <p>Explorez notre gamme complète de produits high-tech pour répondre à tous vos besoins connectés</p>
+        </div>
+        
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Smartwatches</h3>
+                <p>Montres connectées dernier cri avec suivi santé, notifications et design élégant pour votre quotidien.</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Téléphones</h3>
+                <p>Smartphones performants avec appareils photo professionnels, batteries longue durée et écrans immersifs.</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <h3>Accessoires</h3>
+                <p>Écouteurs sans fil, chargeurs rapides, étuis de protection et bien plus pour compléter votre expérience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="container" id="produits">
+        <div class="section-title">
+            <h2>Produits Populaires</h2>
+            <p>Découvrez nos produits les plus demandés, alliant technologie de pointe et design élégant</p>
+        </div>
+        
+        <div class="products">
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Smartwatch Pro X">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Smartwatch</div>
+                    <h3 class="product-title">Smartwatch Pro X</h3>
+                    <div class="product-price">249€ <span>299€</span></div>
+                    <a href="#" class="btn">Ajouter au panier</a>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Phone Ultra 13">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Téléphone</div>
+                    <h3 class="product-title">Phone Ultra 13</h3>
+                    <div class="product-price">899€ <span>999€</span></div>
+                    <a href="#" class="btn">Ajouter au panier</a>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Écouteurs Pro">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accessoire</div>
+                    <h3 class="product-title">Écouteurs Pro Max</h3>
+                    <div class="product-price">179€ <span>199€</span></div>
+                    <a href="#" class="btn">Ajouter au panier</a>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Smartwatch Fit">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Smartwatch</div>
+                    <h3 class="product-title">Smartwatch Fit Plus</h3>
+                    <div class="product-price">159€</div>
+                    <a href="#" class="btn">Ajouter au panier</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="container" id="avantages">
+        <div class="section-title">
+            <h2>Pourquoi Nous Choisir</h2>
+            <p>Nous nous engageons à vous offrir la meilleure expérience d'achat de produits high-tech</p>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Livraison Rapide</h3>
+                <p>Livraison express offerte à partir de 50€ d'achat. Recevez vos produits en 24h-48h.</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Garantie 2 Ans</h3>
+                <p>Tous nos produits bénéficient d'une garantie constructeur de 2 ans extensible.</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-headset"></i>
+                <h3>Support 7j/7</h3>
+                <p>Notre équipe support est disponible 7 jours sur 7 pour répondre à vos questions.</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-undo-alt"></i>
+                <h3>Retour Facile</h3>
+                <p>Vous avez 30 jours pour retourner un produit non satisfait, sans justificatif.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="container">
+        <div class="newsletter">
+            <h2>Restez Connectés</h2>
+            <p>Inscrivez-vous à notre newsletter pour recevoir en exclusivité nos offres promotionnelles, nouveautés et conseils tech.</p>
+            
+            <form class="newsletter-form">
+                <input type="email" placeholder="Votre adresse email" required>
+                <button type="submit" class="btn">S'abonner</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TechStyle</h3>
+                    <p>Votre destination high-tech pour smartwatches, téléphones et accessoires de qualité supérieure.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Catégories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Smartwatches</a></li>
+                        <li><a href="#">Téléphones Portables</a></li>
+                        <li><a href="#">Écouteurs & Casques</a></li>
+                        <li><a href="#">Chargeurs & Câbles</a></li>
+                        <li><a href="#">Étuis & Protections</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens Utiles</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">À propos de nous</a></li>
+                        <li><a href="#">Contactez-nous</a></li>
+                        <li><a href="#">Livraison & Retours</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Rue de la Tech, Paris</li>
+                        <li><i class="fas fa-phone"></i> 01 23 45 67 89</li>
+                        <li><i class="fas fa-envelope"></i> contact@techstyle.fr</li>
+                        <li><i class="fas fa-clock"></i> Lun-Sam: 9h-20h</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 TechStyle. Tous droits réservés. | Site créé avec passion pour les passionnés de tech</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll pour les liens d'ancrage
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation des cartes produits au défilement
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Animation des cartes produit
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Animation des catégories
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s';
+            observer.observe(card);
+        });
+        
+        // Simulation d'ajout au panier
+        document.querySelectorAll('.product-card .btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productName = this.closest('.product-info').querySelector('.product-title').textContent;
+                
+                // Animation du bouton
+                this.textContent = 'Ajouté !';
+                this.style.backgroundColor = '#10b981';
+                
+                setTimeout(() => {
+                    this.textContent = 'Ajouter au panier';
+                    this.style.backgroundColor = '';
+                }, 2000);
+                
+                // Notification visuelle
+                const notification = document.createElement('div');
+                notification.innerHTML = `<i class="fas fa-check-circle"></i> ${productName} a été ajouté à votre panier`;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: #10b981;
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    z-index: 10000;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    animation: slideIn 0.3s ease;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+                
+                // Ajouter une animation au panier dans le header
+                const cartIcon = document.querySelector('.fa-shopping-cart');
+                cartIcon.style.transform = 'scale(1.3)';
+                cartIcon.style.color = '#f59e0b';
+                
+                setTimeout(() => {
+                    cartIcon.style.transform = '';
+                    cartIcon.style.color = '';
+                }, 500);
+            });
+        });
+        
+        // Gestion de la newsletter
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            const email = emailInput.value;
+            
+            if(email) {
+                emailInput.value = '';
+                emailInput.placeholder = 'Merci pour votre inscription !';
+                emailInput.style.backgroundColor = '#f0fdf4';
+                
+                setTimeout(() => {
+                    emailInput.placeholder = 'Votre adresse email';
+                    emailInput.style.backgroundColor = '';
+                }, 3000);
+            }
+        });
+        
+        // Animation au chargement
+        window.addEventListener('load', () => {
+            document.querySelector('.hero-text').style.animation = 'fadeInUp 1s ease';
+            document.querySelector('.hero-image').style.animation = 'fadeInRight 1s ease 0.3s';
+        });
+    </script>
+</body>
+</html>
