@@ -9,13 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ===== VARIABLES & RESET ===== */
+        /* ===== NOUVELLES VARIABLES ===== */
         :root {
-            --primary: #0047AB;
+            --primary: #0047AB;         /* Bleu Elite Smart */
             --primary-dark: #003788;
             --primary-light: #2a6bc9;
-            --secondary: #FFD700;
-            --secondary-dark: #E6C300;
+            /* NOUVELLE COULEUR SECONDAIRE : Gris Argenté */
+            --secondary: #A0A0A0;
+            --secondary-dark: #7A7A7A;
+            --secondary-light: #C9C9C9;
+            --accent: #FFD700;          /* Gardé pour petites accents si besoin */
             --dark: #1a1a2e;
             --light: #f8f9fa;
             --gray: #6c757d;
@@ -136,7 +139,7 @@
         .btn-primary:hover {
             background: var(--secondary-dark);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(160, 160, 160, 0.3);
         }
 
         .btn-secondary {
@@ -218,7 +221,7 @@
         }
 
         .badge-promo {
-            background: var(--warning);
+            background: var(--secondary);
             color: var(--dark);
         }
 
@@ -394,12 +397,13 @@
             color: var(--primary);
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION MODIFIÉE ===== */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                        url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            /* NOUVELLE IMAGE DE FOND : boutique de montres */
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+                        url('https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
-            background-position: center;
+            background-position: center 30%;
             background-attachment: fixed;
             color: var(--white);
             text-align: center;
@@ -420,7 +424,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.6) 100%);
         }
 
         .hero .container {
@@ -429,31 +433,23 @@
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
+        /* TITRE PRINCIPAL - PLUS GRAND ET DISTINCT */
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 3.2rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
         }
 
-        .hero h1 span {
-            color: var(--secondary);
-            position: relative;
-        }
-
-        .hero h1 span:after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--secondary);
-            transform: scaleX(0);
-            animation: expandLine 1.5s ease-out 1.5s forwards;
-        }
-
-        @keyframes expandLine {
-            to { transform: scaleX(1); }
+        /* NOUVEAU SOUS-TITRE AVEC POLICE PLUS PETITE ET DIFFÉRENTE */
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin: 10px auto 30px;
+            max-width: 800px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.95);
+            font-family: 'Poppins', sans-serif; /* Police différente du titre */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         #typing {
@@ -464,7 +460,7 @@
             color: var(--secondary);
             font-weight: 600;
             letter-spacing: 1px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
         }
 
         .hero-buttons {
@@ -811,7 +807,7 @@
             margin-top: 20px;
         }
 
-        /* ===== TÉMOIGNAGES ===== */
+        /* ===== TÉMOIGNAGES CORRIGÉS ===== */
         .testimonials {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
@@ -859,7 +855,9 @@
             position: relative;
             z-index: 1;
             margin-bottom: 20px;
-            color: white;
+            color: white !important; /* CORRECTION : Texte en blanc pour lisibilité */
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
 
         .client-info {
@@ -1108,7 +1106,7 @@
             transform: scale(1.3);
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ===== RESPONSIVE DESIGN AMÉLIORÉ ===== */
         @media (max-width: 1200px) {
             h1 {
                 font-size: 2.8rem;
@@ -1122,6 +1120,10 @@
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
             }
             
             #typing {
@@ -1167,12 +1169,18 @@
             /* Hero mobile */
             .hero {
                 padding: 140px 20px 60px;
-                background-attachment: scroll;
+                background-attachment: scroll; /* Meilleure performance mobile */
+                background-position: center center;
                 min-height: 70vh;
             }
 
             .hero h1 {
                 font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin: 15px auto 25px;
             }
 
             #typing {
@@ -1234,8 +1242,13 @@
                 font-size: 1.8rem;
             }
 
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
             #typing {
                 font-size: 1rem;
+                min-height: 30px;
             }
 
             h2 {
@@ -1280,16 +1293,23 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-
-            
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section avec les modifications -->
     <section class="hero" id="accueil">
         <div class="container">
-            <h1>Elite Smart, votre partenaire privilégié pour votre technologie au Burkina Faso</h1>    
+            <!-- Titre principal plus grand et distinct -->
+            <h1>Elite Smart</h1>
+            
+            <!-- Nouveau sous-titre avec police plus petite et différente -->
+            <p class="hero-subtitle">
+                Votre partenaire privilégié pour les montres connectées et accessoires high-tech au Burkina Faso
+            </p>
+            
+            <!-- L'effet machine à écrire reste ici -->
             <span id="typing"></span>
+            
             <div class="hero-buttons">
                 <a href="#produits" class="btn btn-primary">
                     <i class="fas fa-eye"></i> Voir les produits
@@ -1549,7 +1569,7 @@
         </div>
     </section>
 
-    <!-- Témoignages -->
+    <!-- Témoignages avec texte corrigé en blanc -->
     <section class="section testimonials" id="temoignages">
         <div class="container">
             <div class="section-header">
@@ -1560,7 +1580,7 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        <p>"Excellent service client et produits de qualité. Ma montre connectée fonctionne parfaitement depuis 2 ans . Je recommande vivement Elite Smart !"</p>
+                        <p>"Excellent service client et produits de qualité. Ma montre connectée fonctionne parfaitement depuis 2 ans. Je recommande vivement Elite Smart !"</p>
                     </div>
                     <div class="client-info">
                         <div class="client-avatar">AK</div>
@@ -1598,7 +1618,7 @@
                 
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        <p>"J'ai acheté des écouteurs et une montre. Les deux produits sont excellents. La garantie offre une vraie tranquillité d'esprit Merci Elite Smart."</p>
+                        <p>"J'ai acheté des écouteurs et une montre. Les deux produits sont excellents. La garantie offre une vraie tranquillité d'esprit. Merci Elite Smart."</p>
                     </div>
                     <div class="client-info">
                         <div class="client-avatar">MD</div>
@@ -1784,27 +1804,6 @@
         // Démarrer l'effet machine à écrire
         setTimeout(type, 1000);
 
-        // ===== COMPTEURS ANIMÉS =====
-        function animateCounters() {
-            document.querySelectorAll('.counter').forEach(counter => {
-                const target = +counter.dataset.target;
-                let count = 0;
-                const increment = target / 100;
-                
-                const updateCounter = () => {
-                    if (count < target) {
-                        count += increment;
-                        counter.innerText = Math.ceil(count);
-                        setTimeout(updateCounter, 20);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                
-                updateCounter();
-            });
-        }
-
         // ===== MENU MOBILE =====
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
@@ -1888,7 +1887,6 @@
                     if (entry.target.classList.contains('stats')) {
                         if (!entry.target.classList.contains('animated')) {
                             entry.target.classList.add('animated');
-                            animateCounters();
                         }
                     }
                 }
@@ -1904,21 +1902,6 @@
             
             // Cartes produits (desktop)
             document.querySelectorAll('.product-card').forEach(card => {
-                observer.observe(card);
-            });
-            
-            // Cartes catégories (desktop)
-            document.querySelectorAll('.category-card').forEach(card => {
-                observer.observe(card);
-            });
-            
-            // Cartes "Pourquoi nous"
-            document.querySelectorAll('.why-card').forEach(card => {
-                observer.observe(card);
-            });
-            
-            // Cartes services
-            document.querySelectorAll('.service-card').forEach(card => {
                 observer.observe(card);
             });
             
@@ -1946,10 +1929,6 @@
                 document.querySelectorAll('.product-grid, .category-grid').forEach(grid => {
                     grid.style.display = 'none';
                 });
-                
-                // Configurer les indicateurs
-                setupScrollIndicators('category');
-                setupScrollIndicators('product');
             }
             
             // Réagir au redimensionnement
@@ -1963,8 +1942,6 @@
                     document.querySelectorAll('.product-grid, .category-grid').forEach(grid => {
                         grid.style.display = 'none';
                     });
-                    setupScrollIndicators('category');
-                    setupScrollIndicators('product');
                 } else {
                     document.querySelectorAll('.carousel-container').forEach(container => {
                         container.style.display = 'none';
@@ -1973,40 +1950,6 @@
                         grid.style.display = 'grid';
                     });
                 }
-            });
-        }
-
-        // ===== FONCTION POUR LES INDICATEURS DE SCROLL =====
-        function setupScrollIndicators(type) {
-            const carouselWrapper = document.querySelector(`.${type === 'category' ? '.categories' : '.products'} .carousel-wrapper`);
-            const indicators = document.querySelectorAll(`#${type}-indicators .scroll-indicator`);
-            
-            if (!carouselWrapper || !indicators.length) return;
-            
-            const cardWidth = carouselWrapper.querySelector(type === 'category' ? '.category-card' : '.product-card').offsetWidth;
-            const gap = 20;
-            const totalWidth = cardWidth + gap;
-            
-            carouselWrapper.addEventListener('scroll', () => {
-                const scrollPosition = carouselWrapper.scrollLeft;
-                const activeIndex = Math.round(scrollPosition / totalWidth);
-                
-                indicators.forEach((indicator, index) => {
-                    if (index === activeIndex) {
-                        indicator.classList.add('active');
-                    } else {
-                        indicator.classList.remove('active');
-                    }
-                });
-            });
-            
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    carouselWrapper.scrollTo({
-                        left: index * totalWidth,
-                        behavior: 'smooth'
-                    });
-                });
             });
         }
 
@@ -2036,26 +1979,6 @@
                 setTimeout(() => notification.remove(), 300);
             }, 3000);
         }
-
-        // ===== PANIER =====
-        let cartCount = 3;
-        const cartCountEl = document.querySelector('.cart-count');
-        const buyButtons = document.querySelectorAll('.btn-whatsapp');
-        
-        buyButtons.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                if (this.classList.contains('btn-whatsapp')) {
-                    cartCount++;
-                    cartCountEl.textContent = cartCount;
-                    
-                    // Animation du compteur
-                    cartCountEl.style.transform = 'scale(1.5)';
-                    setTimeout(() => {
-                        cartCountEl.style.transform = 'scale(1)';
-                    }, 300);
-                }
-            });
-        });
 
         // ===== BOUTONS "VOIR DÉTAILS" =====
         const detailButtons = document.querySelectorAll('.btn-view-details');
