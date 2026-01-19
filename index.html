@@ -14,11 +14,11 @@
             --primary: #0047AB;         /* Bleu Elite Smart */
             --primary-dark: #003788;
             --primary-light: #2a6bc9;
-            /* NOUVELLE COULEUR SECONDAIRE : Gris Argenté */
-           --secondary: #FF6B35;
-            --secondary-dark: #7A7A7A;
-            --secondary-light: #C9C9C9;
-             --accent: #FFD700;           /* Gardé pour petites accents si besoin */
+            /* COULEUR ORANGE VIF */
+            --secondary: #FF6B35;
+            --secondary-dark: #E55A2B;
+            --secondary-light: #FF8C61;
+            --accent: #FFD700;          /* Or pour accents */
             --dark: #1a1a2e;
             --light: #f8f9fa;
             --gray: #6c757d;
@@ -133,13 +133,13 @@
 
         .btn-primary {
             background: var(--secondary);
-            color: var(--dark);
+            color: white;
         }
 
         .btn-primary:hover {
             background: var(--secondary-dark);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(160, 160, 160, 0.3);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
         }
 
         .btn-secondary {
@@ -150,7 +150,7 @@
 
         .btn-secondary:hover {
             background: var(--secondary);
-            color: var(--dark);
+            color: white;
             transform: translateY(-5px);
         }
 
@@ -222,7 +222,7 @@
 
         .badge-promo {
             background: var(--secondary);
-            color: var(--dark);
+            color: white;
         }
 
         /* ===== ANIMATIONS ===== */
@@ -333,7 +333,6 @@
         .nav-links li:nth-child(3) { animation-delay: 0.3s; }
         .nav-links li:nth-child(4) { animation-delay: 0.4s; }
         .nav-links li:nth-child(5) { animation-delay: 0.5s; }
-        .nav-links li:nth-child(6) { animation-delay: 0.6s; }
 
         .nav-links a {
             font-weight: 600;
@@ -379,7 +378,7 @@
             top: -8px;
             right: -8px;
             background: var(--secondary);
-            color: var(--dark);
+            color: white;
             font-size: 12px;
             font-weight: bold;
             width: 20px;
@@ -397,9 +396,8 @@
             color: var(--primary);
         }
 
-        /* ===== HERO SECTION MODIFIÉE ===== */
+        /* ===== HERO SECTION ===== */
         .hero {
-            /* NOUVELLE IMAGE DE FOND : boutique de montres */
             background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
                         url('https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
@@ -433,14 +431,12 @@
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
-        /* TITRE PRINCIPAL - PLUS GRAND ET DISTINCT */
         .hero h1 {
             font-size: 3.2rem;
             margin-bottom: 5px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
         }
 
-        /* NOUVEAU SOUS-TITRE AVEC POLICE PLUS PETITE ET DIFFÉRENTE */
         .hero-subtitle {
             font-size: 1.4rem;
             margin: 10px auto 30px;
@@ -448,7 +444,7 @@
             font-weight: 300;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.95);
-            font-family: 'Poppins', sans-serif; /* Police différente du titre */
+            font-family: 'Poppins', sans-serif;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
@@ -509,58 +505,6 @@
             opacity: 0.9;
             color: white;
             margin-bottom: 0;
-        }
-
-        /* ===== CATÉGORIES ===== */
-        .categories {
-            background-color: var(--white);
-        }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .category-card {
-            background-color: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
-        }
-
-        .category-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .category-icon {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: var(--white);
-            height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-        }
-
-        .category-content {
-            padding: 30px;
-            text-align: center;
-        }
-
-        .category-content h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
         }
 
         /* ===== PRODUITS ===== */
@@ -721,92 +665,6 @@
             font-size: 32px;
         }
 
-        /* ===== SERVICES ===== */
-        .services {
-            background-color: #f8f9fa;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background-color: var(--white);
-            border-radius: var(--radius);
-            padding: 40px 30px;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .service-icon {
-            color: var(--primary);
-            margin-bottom: 25px;
-            background-color: rgba(0, 71, 171, 0.1);
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-icon {
-            background-color: var(--primary);
-            color: white;
-            transform: rotateY(180deg);
-        }
-
-        .service-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .service-content h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .service-content ul {
-            list-style: none;
-            text-align: left;
-            margin: 15px 0 20px;
-            padding: 0;
-        }
-
-        .service-content ul li {
-            margin-bottom: 8px;
-            padding-left: 5px;
-            font-size: 0.95rem;
-        }
-
-        .service-content .btn {
-            margin-top: auto;
-            margin-top: 20px;
-        }
-
         /* ===== TÉMOIGNAGES CORRIGÉS ===== */
         .testimonials {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -826,12 +684,12 @@
 
         .testimonial-card {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             border-radius: var(--radius);
             padding: 40px 30px;
             box-shadow: var(--shadow);
             position: relative;
-            border: 2px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
         }
 
@@ -855,7 +713,12 @@
             position: relative;
             z-index: 1;
             margin-bottom: 20px;
-            color: rgba(255, 255, 255, 0.9) !important; /* CORRECTION : Texte en blanc pour lisibilité */
+        }
+
+        .testimonial-content p {
+            color: rgba(255, 255, 255, 0.95) !important;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
             font-size: 1.05rem;
             line-height: 1.7;
         }
@@ -869,12 +732,12 @@
         .client-avatar {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            background: linear-gradient(135deg, var(--secondary), #FF8C61);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--dark);
+            color: white;
             font-size: 20px;
             font-weight: bold;
         }
@@ -885,7 +748,7 @@
         }
 
         .client-rating {
-            color: var(--secondary);
+            color: #FFD700 !important;
             font-size: 14px;
         }
 
@@ -1020,7 +883,7 @@
 
         .footer-social a:hover {
             background: var(--secondary);
-            color: var(--dark);
+            color: white;
             transform: translateY(-5px);
         }
 
@@ -1106,7 +969,7 @@
             transform: scale(1.3);
         }
 
-        /* ===== RESPONSIVE DESIGN AMÉLIORÉ ===== */
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 1200px) {
             h1 {
                 font-size: 2.8rem;
@@ -1166,10 +1029,18 @@
                 padding: 20px;
             }
 
+            .nav-links a {
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+                width: 100%;
+                display: block;
+                font-size: 1.1rem;
+            }
+
             /* Hero mobile */
             .hero {
                 padding: 140px 20px 60px;
-                background-attachment: scroll; /* Meilleure performance mobile */
+                background-attachment: scroll;
                 background-position: center center;
                 min-height: 70vh;
             }
@@ -1218,6 +1089,62 @@
                 display: flex;
             }
 
+            /* Produits mobile optimisés */
+            .carousel-wrapper .product-card {
+                flex: 0 0 calc(80vw - 30px) !important;
+                min-width: calc(80vw - 30px) !important;
+                height: auto !important;
+            }
+            
+            .product-image {
+                height: 200px !important;
+                padding: 15px !important;
+            }
+            
+            .product-content {
+                padding: 15px !important;
+            }
+            
+            .product-title {
+                font-size: 1.1rem !important;
+                line-height: 1.3 !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .product-content p {
+                font-size: 0.9rem !important;
+                line-height: 1.5 !important;
+                margin-bottom: 12px !important;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            
+            .product-price {
+                font-size: 1.3rem !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .product-actions {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+                margin-top: 15px !important;
+            }
+            
+            .product-actions .btn {
+                padding: 10px 15px !important;
+                font-size: 13px !important;
+                width: 100% !important;
+            }
+            
+            .badge {
+                font-size: 0.7rem !important;
+                padding: 4px 10px !important;
+                top: 10px !important;
+                left: 10px !important;
+            }
+
             /* Stats mobile */
             .stats-container {
                 grid-template-columns: repeat(2, 1fr);
@@ -1259,11 +1186,29 @@
                 grid-template-columns: 1fr;
             }
 
-            .carousel-wrapper .product-card,
-            .carousel-wrapper .category-card {
-                flex: 0 0 calc(90vw - 40px);
-                min-width: calc(90vw - 40px);
+            .carousel-wrapper .product-card {
+                flex: 0 0 calc(85vw - 20px) !important;
+                min-width: calc(85vw - 20px) !important;
             }
+            
+            .product-image {
+                height: 180px !important;
+            }
+            
+            .product-title {
+                font-size: 1rem !important;
+            }
+            
+            .product-price {
+                font-size: 1.2rem !important;
+            }
+        }
+
+        /* ===== CORRECTIONS SPÉCIFIQUES ===== */
+        .footer-links a[href="#categories"],
+        .footer-links a[href="#services"] {
+            pointer-events: none;
+            opacity: 0.6;
         }
     </style>
 </head>
@@ -1296,18 +1241,15 @@
         </div>
     </header>
 
-    <!-- Hero Section avec les modifications -->
+    <!-- Hero Section -->
     <section class="hero" id="accueil">
         <div class="container">
-            <!-- Titre principal plus grand et distinct -->
             <h1>Elite Smart</h1>
             
-            <!-- Nouveau sous-titre avec police plus petite et différente -->
             <p class="hero-subtitle">
                 Votre partenaire privilégié pour les montres connectées et accessoires high-tech au Burkina Faso
             </p>
             
-            <!-- L'effet machine à écrire reste ici -->
             <span id="typing"></span>
             
             <div class="hero-buttons">
@@ -1569,7 +1511,7 @@
         </div>
     </section>
 
-    <!-- Témoignages avec texte corrigé en blanc -->
+    <!-- Témoignages -->
     <section class="section testimonials" id="temoignages">
         <div class="container">
             <div class="section-header">
@@ -1905,11 +1847,10 @@
                 observer.observe(card);
             });
             
-            // Section statistiques
-            const statsSection = document.querySelector('.stats');
-            if (statsSection) {
-                observer.observe(statsSection);
-            }
+            // Cartes "Pourquoi nous"
+            document.querySelectorAll('.why-card').forEach(card => {
+                observer.observe(card);
+            });
             
             // ===== GESTION DES CARROUSELS MOBILE =====
             setupMobileCarousels();
@@ -1962,7 +1903,7 @@
                 top: 100px;
                 right: 30px;
                 background: var(--secondary);
-                color: var(--dark);
+                color: white;
                 padding: 15px 25px;
                 border-radius: var(--radius);
                 z-index: 10000;
