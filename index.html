@@ -552,7 +552,7 @@
 
         /* IMAGE PLUS GRANDE - 70% de la carte */
         .product-image {
-            height: 350px; /* Augmenté de 200px à 250px */
+            height: 350px;
             background: linear-gradient(135deg, #f1f3f5, #e9ecef);
             display: flex;
             align-items: center;
@@ -564,12 +564,12 @@
         }
 
         .product-image img {
-                 width: 100%;
-               height: 100%;
-               object-fit: cover; /* C'est la propriété magique */
-    transition: var(--transition);
-    object-position: center; /* Centre l'image */
-}
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            object-position: center;
+        }
 
         .product-card:hover .product-image img {
             transform: scale(1.1);
@@ -687,7 +687,7 @@
             font-size: 32px;
         }
 
-        /* ===== TÉMOIGNAGES CORRIGÉS ===== */
+        /* ===== TÉMOIGNAGES ===== */
         .testimonials {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
@@ -1002,11 +1002,11 @@
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
             padding-bottom: 20px;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
 
         .carousel-wrapper::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+            display: none;
         }
 
         .carousel-wrapper .product-card,
@@ -1039,6 +1039,63 @@
         /* ===== SECTION ACCESSOIRES ===== */
         .accessories {
             background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+        }
+
+        /* ===== STYLES POUR LES DÉTAILS DES PRODUITS ===== */
+        .product-detail {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: var(--radius);
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .product-detail h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .product-detail p {
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .contact-info-modal {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            margin: 20px 0;
+        }
+
+        .contact-info-modal h4 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-contact {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: var(--radius);
+        }
+
+        .whatsapp-contact i {
+            font-size: 24px;
+            color: #25D366;
+        }
+
+        .whatsapp-contact p {
+            color: white;
+            margin: 0;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
         }
 
         /* ===== RESPONSIVE DESIGN ===== */
@@ -1294,13 +1351,6 @@
                 margin-right: -15px;
             }
         }
-
-        /* ===== CORRECTIONS SPÉCIFIQUES ===== */
-        .footer-links a[href="#categories"],
-        .footer-links a[href="#services"] {
-            pointer-events: none;
-            opacity: 0.6;
-        }
     </style>
 </head>
 <body>
@@ -1347,7 +1397,7 @@
                 <a href="#produits" class="btn btn-primary">
                     <i class="fas fa-eye"></i> Voir les produits
                 </a>
-                <a href="https://wa.me/22674958509" class="btn btn-secondary" target="_blank">
+                <a href="https://wa.me/22676707008" class="btn btn-secondary" target="_blank">
                     <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
                 </a>
             </div>
@@ -1563,7 +1613,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>Notre Adresse</h4>
-                            <p>Ouagadougou, Burkina Faso<br>Zaabre daaga entre le siege de la  vista banque et le siege de la banque BCB </p>
+                            <p>Ouagadougou, Burkina Faso<br>Zaabre daaga entre le siege de la  vista banque et le siege de la banque BCB</p>
                         </div>
                     </div>
                     
@@ -1573,7 +1623,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>Téléphone</h4>
-                            <p>+226 76 70 70 08 <br>+226 70 16 14 84 </p>
+                            <p>+226 76 70 70 08<br>+226 70 16 14 84</p>
                         </div>
                     </div>
                     
@@ -1583,7 +1633,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>Email</h4>
-                            <p>abdulkafando704@gmail.com </p>
+                            <p>abdulkafando704@gmail.com</p>
                         </div>
                     </div>
                     
@@ -1626,7 +1676,7 @@
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="https://wa.me/22674958509" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/22676707008" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 
@@ -1656,9 +1706,9 @@
                 <div class="footer-links">
                     <h3>Contact</h3>
                     <ul>
-                        <li><a href="tel:+22674958509"><i class="fas fa-phone"></i> +226 76 70 70 08 </a></li>
+                        <li><a href="tel:+22676707008"><i class="fas fa-phone"></i> +226 76 70 70 08</a></li>
                         <li><a href="mailto:contact@elitesmart.bf"><i class="fas fa-envelope"></i> contact@elitesmart.bf</a></li>
-                        <li><a href="https://wa.me/22674958509" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="https://wa.me/22676707008" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i> Ouagadougou, BF</a></li>
                     </ul>
                 </div>
@@ -1671,7 +1721,7 @@
     </footer>
 
     <!-- WhatsApp Float -->
-    <a href="https://wa.me/22674958509" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/22676707008" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1827,24 +1877,26 @@
             }, 3000);
         }
 
-        // ===== PRODUITS AVEC TES IMAGES =====
+        // ===== PRODUITS AVEC TES IMAGES ET DÉTAILS =====
         const products = {
           montres: [
             {
-              id: 5,
+              id: 1,
               name: "Montre Elite 1",
               category: "MONTRE CONNECTÉE",
               description: "Écran AMOLED, suivi santé 24/7, autonomie 7 jours, résistance à l'eau",
+              detail: "Cette montre connectée Elite 1 dispose d'un écran AMOLED 1.43 pouces avec une résolution de 466x466 pixels. Elle offre un suivi complet de la santé avec monitoring du rythme cardiaque 24/7, oxymètre de pouls, suivi du sommeil et gestion du stress. Résistance à l'eau 5ATM, compatible Android et iOS. Batterie de 450mAh offrant jusqu'à 7 jours d'autonomie en mode normal.",
               price: "12.500 FCFA",
               image: "Elitesmart/Montres/montre1.jpg",
               badge: "hot",
               badgeText: "🔥 BEST SELLER"
             },
             {
-              id: 6,
+              id: 2,
               name: "Montre Elite 2",
               category: "MONTRE SPORT",
               description: "GPS intégré, 50 modes sport, oxymètre, moniteur de sommeil",
+              detail: "Montre sport Elite 2 avec GPS intégré pour un suivi précis de vos activités. Propose plus de 50 modes sport dont course, vélo, natation, musculation, yoga, etc. Capteurs avancés: oxymètre de pouls, moniteur de sommeil, mesure du stress. Écran tactile couleur 1.3 pouces, résistance à l'eau 50m. Autonomie: 10 jours en mode montre, 20h avec GPS activé.",
               price: "12.500 FCFA",
               image: "Elitesmart/Montres/montre2.jpg",
               badge: "hot",
@@ -1854,7 +1906,8 @@
               id: 3,
               name: "Smart Watch",
               category: "MONTRE CONNECTÉE",
-              description: " Recevez vos appels telephonique ,Lire vos messages SMS , WattsApp, Facebook .. en toute discretion ",
+              description: "Recevez vos appels téléphoniques, lisez vos messages SMS, WhatsApp, Facebook...",
+              detail: "Smart Watch avancée avec fonctionnalités complètes de communication. Recevez et passez des appels directement depuis votre montre, lisez vos messages SMS, WhatsApp, Facebook Messenger et autres notifications. Écran tactile couleur 1.69 pouces, connectivité Bluetooth 5.0, autonomie 7 jours. Parfait pour rester connecté discrètement.",
               price: "120.000 FCFA",
               image: "Elitesmart/Montres/Montre3.jpg",
               badge: "new",
@@ -1862,30 +1915,33 @@
             },
             {
               id: 4,
-              name: "Smart Watch",
+              name: "Smart Watch Premium",
               category: "MONTRE CONNECTÉE",
-              description: "Recevez vos appels telephonique ,Lire vos messages SMS , WattsApp, Facebook .. en toute discretion",
+              description: "Recevez vos appels téléphoniques, lisez vos messages en toute discrétion",
+              detail: "Smart Watch Premium avec design élégant et fonctionnalités complètes. Écran AMOLED 1.8 pouces, connectivité Bluetooth 5.2, suivi santé avancé avec ECG, oxymètre, monitoring du sommeil. Résistance à l'eau 5ATM, autonomie 10 jours. Compatible iOS et Android. Design métallique premium.",
               price: "135.000 FCFA",
               image: "Elitesmart/Montres/Montre4.jpg",
               badge: "promo",
               badgeText: "PROMO -15%"
             },
             {
-              id: 1,
-              name: "Smart Watch",
+              id: 5,
+              name: "Smart Watch Sport",
               category: "MONTRE SPORT",
-              description: "Recevez vos appels telephonique ,Lire vos messages SMS , WattsApp, Facebook .. en toute discretion",
-              price: "12 500 FCFA",
+              description: "Idéale pour le sport avec fonctions de communication complètes",
+              detail: "Smart Watch Sport spécialement conçue pour les sportifs. Boîtier léger et résistant, écran tactile couleur 1.4 pouces avec protection Gorilla Glass. Fonctions sport avancées: GPS intégré, fréquence cardiaque en temps réel, suivi VO2 max. Communication complète: appels, messages, notifications. Autonomie 15 jours.",
+              price: "125.000 FCFA",
               image: "Elitesmart/Montres/montre5.jpg",
               badge: "hot",
               badgeText: "POPULAIRE"
             },
             {
-              id: 2,
-              name: "Smart Watch",
+              id: 6,
+              name: "Smart Watch Élégante",
               category: "MONTRE CONNECTÉE",
-              description: "Recevez vos appels telephonique ,Lire vos messages SMS , WattsApp, Facebook .. en toute discretion",
-              price: "12 500 FCFA",
+              description: "Design élégant avec toutes les fonctions smart",
+              detail: "Smart Watch au design élégant et raffiné pour un usage quotidien et professionnel. Cadran circulaire 1.3 pouces avec affichage haute résolution. Fonctions: notifications, suivi activité, monitoring sommeil, météo, contrôle musique. Boîtier en acier inoxydable, bracelet cuir interchangeable. Autonomie 14 jours.",
+              price: "125.000 FCFA",
               image: "Elitesmart/Montres/montre6.jpg",
               badge: "new",
               badgeText: "NOUVEAU"
@@ -1895,6 +1951,7 @@
               name: "Montre Elite 7",
               category: "MONTRE SPORT",
               description: "Résistance extrême, navigation, oxymètre de pouls",
+              detail: "Montre Elite 7 conçue pour les conditions extrêmes. Certification militaire MIL-STD-810G, résistance à l'eau 100m, écran transflectif toujours allumé. Navigation avancée avec GPS double fréquence, boussole numérique, altimètre barométrique. Oxymètre de pouls, monitoring stress, autonomie 30 jours en mode montre.",
               price: "195.000 FCFA",
               image: "Elitesmart/Montres/montre7.jpg",
               badge: "hot",
@@ -1905,6 +1962,7 @@
               name: "Montre Elite 8",
               category: "MONTRE CONNECTÉE",
               description: "Autonomie 10 jours, écran rétractable, fonctions avancées",
+              detail: "Montre Elite 8 avec écran rétractable innovant qui s'adapte à votre activité. Autonomie exceptionnelle de 10 jours, écran AMOLED 1.75 pouces. Fonctions avancées: paiement sans contact NFC, assistant vocal, suivi santé professionnel. Compatible avec plus de 100 applications. Design moderne et confortable.",
               price: "140.000 FCFA",
               image: "Elitesmart/Montres/montre8.jpg",
               badge: "promo",
@@ -1915,6 +1973,7 @@
               name: "Montre Elite 9",
               category: "MONTRE CONNECTÉE",
               description: "Écran AMOLED avancé, fonctions santé complètes",
+              detail: "Montre Elite 9 avec écran AMOLED avancé 1.9 pouces offrant des couleurs vives et un contraste exceptionnel. Suivi santé complet: ECG professionnel, suivi respiration, température corporelle, suivi cycle menstruel. Détection automatique des activités sportives, plus de 100 modes disponibles.",
               price: "155.000 FCFA",
               image: "Elitesmart/Montres/montre9.jpg",
               badge: "hot",
@@ -1925,6 +1984,7 @@
               name: "Montre Elite 10",
               category: "MONTRE DE LUXE",
               description: "Design premium, matériaux haut de gamme, fonctions exclusives",
+              detail: "Montre Elite 10 édition luxe avec boîtier titane grade 5, verre saphir antireflet, bracelet cuir de veau italien. Mouvement connecté haute précision, fonctions exclusives: suivi golf avec cartes de 40.000 parcours, analyse de swing, suivi voile avec données météo. Édition limitée numérotée.",
               price: "220.000 FCFA",
               image: "Elitesmart/Montres/montre10.jpg",
               badge: "new",
@@ -1935,6 +1995,7 @@
               name: "Montre Elite 11",
               category: "MONTRE SPORT",
               description: "Étanche 100m, GPS précis, batterie longue durée",
+              detail: "Montre Elite 11 spécialement conçue pour les sports nautiques. Étanche 100m, certifications de plongée. GPS multi-constellation pour une précision extrême, suivi plongée avec décompression. Écran toujours allumé haute visibilité au soleil. Autonomie 25 jours, charge rapide 1h pour 7 jours.",
               price: "190.000 FCFA",
               image: "Elitesmart/Montres/montre11.jpg",
               badge: "hot",
@@ -1945,6 +2006,7 @@
               name: "Montre Elite 12",
               category: "MONTRE CONNECTÉE",
               description: "Écran incurvé, design futuriste, fonctions intelligentes",
+              detail: "Montre Elite 12 avec écran incurvé OLED 1.6 pouces épousant parfaitement la forme du poignet. Design futuriste, interface utilisateur révolutionnaire. Fonctions intelligentes: reconnaissance gestuelle, assistant IA intégré, traduction en temps réel. Autonomie 8 jours avec charge sans fil.",
               price: "165.000 FCFA",
               image: "Elitesmart/Montres/montre12.jpg",
               badge: "new",
@@ -1955,6 +2017,7 @@
               name: "Montre Elite 13",
               category: "MONTRE CLASSIQUE",
               description: "Design élégant, acier inoxydable, montre connectée discrète",
+              detail: "Montre Elite 13 au design classique et intemporel. Boîtier acier inoxydable 316L, verre saphir, cadran analogique avec indicateurs smart discrets. Fonctions connectées: notifications, suivi activité, paiement sans contact. Mouvement hybride à quartz avec autonomie 6 mois. Parfaite pour le milieu professionnel.",
               price: "145.000 FCFA",
               image: "Elitesmart/Montres/montre13.jpg",
               badge: "promo",
@@ -1965,6 +2028,7 @@
               name: "Montre Elite 14",
               category: "MONTRE SPORT",
               description: "Légère et résistante, suivi activité complet",
+              detail: "Montre Elite 14 ultra légère (seulement 35g) avec boîtier fibre de carbone. Parfaite pour la course à pied et le sport intensif. Suivi activité complet avec analyse de foulée, temps de contact au sol, balance gauche/droite. GPS intégré, autonomie 20h en mode sport. Écran tactile rétro-éclairé.",
               price: "125.000 FCFA",
               image: "Elitesmart/Montres/montre14.jpg",
               badge: "hot",
@@ -1975,6 +2039,7 @@
               name: "Montre Elite 15",
               category: "MONTRE CONNECTÉE",
               description: "Écran tactile couleur, notifications, paiement sans contact",
+              detail: "Montre Elite 15 avec écran tactile couleur 1.7 pouces IPS. Notifications complètes pour toutes vos applications, paiement sans contact NFC compatible Orange Money et Moov Money. Suivi santé basique: fréquence cardiaque, pas, calories. Autonomie 15 jours, charge magnétique rapide.",
               price: "170.000 FCFA",
               image: "Elitesmart/Montres/montre15.jpg",
               badge: "new",
@@ -1985,6 +2050,7 @@
               name: "Montre Elite 16",
               category: "MONTRE SPORT",
               description: "Résistance militaire, GPS double fréquence",
+              detail: "Montre Elite 16 certifiée militaire pour une résistance extrême aux chocs, températures et vibrations. GPS double fréquence L1+L5 pour une précision centimétrique. Cartes topographiques intégrées, navigation hors ligne. Autonomie 40 jours en mode montre, 60h avec GPS maximal. Pour les aventuriers et professionnels.",
               price: "210.000 FCFA",
               image: "Elitesmart/Montres/montre16.jpg",
               badge: "hot",
@@ -1996,8 +2062,9 @@
               id: 17,
               name: "Accessoire Elite 1",
               category: "ACCESSOIRES",
-              description: "Réduction de bruit active, son spatial, autonomie 8h, étui de charge",
-              price: "45.000 FCFA",
+              description: "Micro Cravate de qualité Son clair Et Pro",
+              detail: "Micro cravate professionnel avec réduction de bruit numérique, sensibilité de -38dB, réponse en fréquence 50Hz-16kHz. Idéal pour les présentations, conférences et appels professionnels. Compatible avec tous les smartphones et ordinateurs via prise Jack 3.5mm. Alimentation par pile bouton incluse. Garantie 1 an.",
+              price: "15.000 FCFA",
               originalPrice: "56.000 FCFA",
               image: "Elitesmart/Accessoires/Accessoire1.jpg",
               badge: "promo",
@@ -2007,8 +2074,9 @@
               id: 18,
               name: "Accessoire Elite 2",
               category: "ACCESSOIRES",
-              description: "Charge rapide 65W, compatible multi-appareils, design compact",
-              price: "25.000 FCFA",
+              description: "Micro Cravate de qualité Son clair Et Pro",
+              detail: "Micro cravate professionnel sans fil avec connexion Bluetooth 5.0, portée 15m. Réduction de bruit active, autonomie 8h, charge rapide USB-C. Compatible avec smartphones, tablettes et ordinateurs. Design discret et confortable, parfait pour les réunions en ligne et les podcasts.",
+              price: "15.000 FCFA",
               image: "Elitesmart/Accessoires/Accessoire2.jpg",
               badge: "hot",
               badgeText: "TOP VENTE"
@@ -2017,8 +2085,9 @@
               id: 19,
               name: "Accessoire Elite 3",
               category: "ACCESSOIRES",
-              description: "Qualité sonore HD, connexion Bluetooth 5.3, autonomie 12h",
-              price: "35.000 FCFA",
+              description: "Micro Cravate de qualité Son clair Et Pro",
+              detail: "Micro cravate professionnel avec connectique USB-C directe, compatible plug-and-play avec tous les appareils modernes. Réduction de bruit intelligente, capsule microphone à condensateur. Design ultra-mince et léger, inclut pince de fixation réglable et protection anti-pop.",
+              price: "15.000 FCFA",
               image: "Elitesmart/Accessoires/Accessoire3.jpg",
               badge: "new",
               badgeText: "NOUVEAU"
@@ -2027,7 +2096,8 @@
               id: 20,
               name: "Accessoire Elite 4",
               category: "ACCESSOIRES",
-              description: "20.000 mAh, charge rapide PD, double port USB-C/USB-A",
+              description: "Power Bank 20.000 mAh, charge rapide PD",
+              detail: "Power Bank haute capacité 20.000 mAh avec charge rapide Power Delivery 20W et Quick Charge 3.0. Deux ports USB-A (5V/2.4A) et un port USB-C (PD 20W). Indicateur LED digital, protection contre les surcharges et courts-circuits. Charge complète un smartphone jusqu'à 5 fois. Design compact et portable.",
               price: "40.000 FCFA",
               image: "Elitesmart/Accessoires/Accessoire4.jpg",
               badge: "hot",
@@ -2037,7 +2107,8 @@
               id: 21,
               name: "Accessoire Elite 5",
               category: "ACCESSOIRES",
-              description: "Support universel, fixation ventouse puissante, rotation 360°",
+              description: "Support universel pour téléphone, rotation 360°",
+              detail: "Support universel pour téléphone avec ventouse ultra-puissante et base adhésive 3M. Bras articulé en aluminium avec rotation 360°, inclinaison ajustable. Compatible avec tous les smartphones jusqu'à 7 pouces. Parfait pour le bureau, la voiture ou la maison. Installation facile et réglable.",
               price: "15.000 FCFA",
               image: "Elitesmart/Accessoires/Accessoire5.jpg",
               badge: "promo",
@@ -2047,7 +2118,8 @@
               id: 22,
               name: "Accessoire Elite 6",
               category: "ACCESSOIRES",
-              description: "Son surround 7.1, micro détachable, confort longue durée",
+              description: "Casque Gaming 7.1, micro détachable, confort longue durée",
+              detail: "Casque Gaming 7.1 surround avec drivers 50mm pour un son immersif. Micro détachable à réduction de bruit, commande de volume sur l'oreillette. Coussinets en mousse à mémoire de forme et bandeau réglable pour un confort prolongé. Compatible PC, PS4, PS5, Xbox, Switch. Câble détachable 2m.",
               price: "65.000 FCFA",
               image: "Elitesmart/Accessoires/Accessoire6.jpg",
               badge: "new",
@@ -2057,7 +2129,8 @@
               id: 23,
               name: "Accessoire Elite 7",
               category: "ACCESSOIRES",
-              description: "Étanche IP68, son puissant, autonomie 10h",
+              description: "Enceinte portable étanche IP68, son puissant",
+              detail: "Enceinte Bluetooth portable étanche IP68, résistante à l'eau, la poussière et aux chocs. Son stéréo 10W, basses renforcés, autonomie 10h. Fonction mains libres avec micro intégré, connexion multipoint. Flotteur intégré pour usage en piscine ou à la plage. Design compact et robuste.",
               price: "30.000 FCFA",
               image: "Elitesmart/Accessoires/Accessoire7.jpg",
               badge: "hot",
@@ -2069,9 +2142,9 @@
         // Variables pour gérer le chargement des produits
         let watchesDisplayed = 0;
         let accessoriesDisplayed = 0;
-        const watchesToShow = 6; // Afficher 6 montres initialement
-        const accessoriesToShow = 4; // Afficher 4 accessoires initialement
-        const loadMoreCount = 6; // Charger 6 produits supplémentaires
+        const watchesToShow = 6;
+        const accessoriesToShow = 6; // Changé de 4 à 6 comme demandé
+        const loadMoreCount = 6;
 
         // Fonction pour générer le HTML d'une carte produit
         function generateProductCard(product, isMobile = false) {
@@ -2096,7 +2169,7 @@
                   <button class="btn btn-primary btn-view-details" data-product='${JSON.stringify(product).replace(/'/g, "&#39;")}' style="padding: ${isMobile ? '10px 15px' : '12px 20px'}; font-size: ${isMobile ? '13px' : '14px'}">
                     <i class="fas fa-eye"></i> Détails
                   </button>
-                  <a href="https://wa.me/22674958509?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20${encodeURIComponent(product.name)}" class="btn btn-whatsapp" target="_blank" style="padding: ${isMobile ? '10px 15px' : '12px 20px'}; font-size: ${isMobile ? '13px' : '14px'}">
+                  <a href="https://wa.me/22676707008?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(product.price)})" class="btn btn-whatsapp" target="_blank" style="padding: ${isMobile ? '10px 15px' : '12px 20px'}; font-size: ${isMobile ? '13px' : '14px'}">
                     <i class="fab fa-whatsapp"></i> Commander
                   </a>
                 </div>
@@ -2247,9 +2320,7 @@
             arrow.addEventListener('click', function() {
               const carouselType = this.getAttribute('data-carousel');
               const isPrev = this.classList.contains('prev');
-              const carouselId = isPrev ? 
-                `mobile-${carouselType}` : 
-                `mobile-${carouselType}`;
+              const carouselId = `mobile-${carouselType}`;
               
               const carousel = document.getElementById(carouselId);
               if (!carousel) return;
@@ -2297,7 +2368,7 @@
           }
         });
 
-        // ===== MODAL PRODUIT =====
+        // ===== MODAL PRODUIT AVEC DÉTAILS =====
         function showProductDetails(product) {
           const modalHTML = `
             <div class="modal-overlay">
@@ -2308,21 +2379,36 @@
                 </div>
                 <div class="modal-body">
                   <div class="product-price-large">${product.price}</div>
-                  <p>${product.description}</p>
+                  <p><strong>Description :</strong> ${product.description}</p>
+                  <div class="product-detail">
+                    <h4>Détails du produit :</h4>
+                    <p>${product.detail || 'Détails techniques non disponibles'}</p>
+                  </div>
+                  <div class="contact-info-modal">
+                    <h4>Pour commander ou obtenir plus d'informations :</h4>
+                    <div class="whatsapp-contact">
+                      <i class="fab fa-whatsapp"></i>
+                      <div>
+                        <p><strong>Contact WhatsApp :</strong></p>
+                        <p>+226 76 70 70 08</p>
+                      </div>
+                    </div>
+                  </div>
                   <div class="modal-features">
-                    <h4>Caractéristiques :</h4>
+                    <h4>Avantages Elite Smart :</h4>
                     <ul>
                       <li>Garantie 2 ans</li>
                       <li>Livraison gratuite à Ouagadougou</li>
                       <li>Support technique 24/7</li>
                       <li>Retour sous 14 jours</li>
                       <li>Installation et configuration gratuite</li>
+                      <li>Paiement sécurisé</li>
                     </ul>
                   </div>
                 </div>
                 <div class="modal-actions">
-                  <a href="https://wa.me/22674958509?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20${encodeURIComponent(product.name)}" class="btn btn-whatsapp" target="_blank" style="flex: 1;">
-                    <i class="fab fa-whatsapp"></i> Commander maintenant
+                  <a href="https://wa.me/22676707008?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(product.price)})" class="btn btn-whatsapp" target="_blank" style="flex: 1;">
+                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
                   </a>
                 </div>
               </div>
@@ -2356,6 +2442,8 @@
               padding: 30px;
               max-width: 500px;
               width: 90%;
+              max-height: 80vh;
+              overflow-y: auto;
               animation: slideUp 0.3s ease;
             }
             
@@ -2426,6 +2514,28 @@
                 transform: translateY(0);
               }
             }
+            
+            @keyframes slideInRight {
+              from {
+                opacity: 0;
+                transform: translateX(50px);
+              }
+              to {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+            
+            @keyframes slideOutRight {
+              from {
+                opacity: 1;
+                transform: translateX(0);
+              }
+              to {
+                opacity: 0;
+                transform: translateX(50px);
+              }
+            }
           `;
           
           document.head.appendChild(modalStyle);
@@ -2441,6 +2551,11 @@
               modal.remove();
               modalStyle.remove();
             }
+          });
+          
+          // Empêcher la fermeture en cliquant sur le contenu
+          modal.querySelector('.modal-content').addEventListener('click', (e) => {
+            e.stopPropagation();
           });
         }
 
