@@ -531,7 +531,6 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            min-height: 500px;
         }
 
         .product-card.visible {
@@ -553,8 +552,7 @@
 
         /* IMAGE PLUS GRANDE - 70% de la carte */
         .product-image {
-            height: 350px; /* 70% de la hauteur totale de la carte */
-            min-height: 350px;
+            height: 350px;
             background: linear-gradient(135deg, #f1f3f5, #e9ecef);
             display: flex;
             align-items: center;
@@ -565,26 +563,16 @@
             flex-shrink: 0;
         }
 
-        .product-image:before {
-            content: "Elite Smart";
-            position: absolute;
-            color: rgba(0, 71, 171, 0.1);
-            font-size: 2rem;
-            font-weight: bold;
-            z-index: 0;
-        }
-
         .product-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
-            position: relative;
-            z-index: 1;
+            object-position: center;
         }
 
         .product-card:hover .product-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         /* TEXTE PLUS COMPACT - 30% de la carte */
@@ -594,7 +582,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 150px;
         }
 
         .product-category {
@@ -1111,7 +1098,7 @@
             margin-top: 30px;
         }
 
-        /* ===== RESPONSIVE DESIGN - CORRECTIONS MOBILE ===== */
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 1200px) {
             h1 {
                 font-size: 2.8rem;
@@ -1138,35 +1125,9 @@
             .stat-item h3 {
                 font-size: 2.5rem;
             }
-            
-            .product-card {
-                min-height: 450px;
-            }
-            
-            .product-image {
-                min-height: 300px;
-            }
         }
 
         @media (max-width: 768px) {
-            /* Tailles de texte responsives pour mobile */
-            h1 {
-                font-size: 2.2rem !important;
-            }
-            
-            h2 {
-                font-size: 1.8rem !important;
-            }
-            
-            h3 {
-                font-size: 1.3rem !important;
-            }
-            
-            p, .hero-subtitle {
-                font-size: 1rem !important;
-                line-height: 1.5 !important;
-            }
-            
             /* Header mobile */
             .mobile-menu-btn {
                 display: block;
@@ -1205,55 +1166,42 @@
                 font-size: 1.1rem;
             }
 
-            /* Hero mobile optimisé */
+            /* Hero mobile */
             .hero {
-                padding: 120px 15px 50px !important;
-                background-attachment: scroll !important;
-                background-position: center center !important;
-                min-height: 70vh !important;
+                padding: 140px 20px 60px;
+                background-attachment: scroll;
+                background-position: center center;
+                min-height: 70vh;
             }
 
             .hero h1 {
-                font-size: 1.8rem !important;
-                margin-bottom: 10px !important;
+                font-size: 2rem;
             }
 
             .hero-subtitle {
-                font-size: 1rem !important;
-                margin: 10px auto 20px !important;
+                font-size: 1.1rem;
+                margin: 15px auto 25px;
             }
 
             #typing {
-                font-size: 1.1rem !important;
-                min-height: 40px !important;
-                margin: 15px 0 !important;
+                font-size: 1.2rem;
+                min-height: 40px;
             }
 
             .hero-buttons {
-                flex-direction: column !important;
+                flex-direction: column;
                 align-items: center;
-                gap: 15px !important;
-                margin-top: 20px !important;
+                gap: 15px;
             }
 
-            .hero-buttons .btn {
-                width: 100% !important;
-                max-width: 280px !important;
-                padding: 14px !important;
-                font-size: 0.9rem !important;
+            .btn {
+                width: 100%;
+                max-width: 300px;
             }
 
             /* Section spacing mobile */
             .section {
-                padding: 60px 0 !important;
-            }
-            
-            .section-header {
-                margin-bottom: 40px !important;
-            }
-            
-            .section-header p {
-                font-size: 1rem !important;
+                padding: 60px 0;
             }
 
             /* Carrousels mobile */
@@ -1280,19 +1228,15 @@
                 flex: 0 0 calc(80vw - 30px) !important;
                 min-width: calc(80vw - 30px) !important;
                 height: auto !important;
-                min-height: 450px !important;
             }
             
-            /* Images à 70% sur mobile */
             .product-image {
-                height: 250px !important; /* Environ 70% de 450px */
-                min-height: 250px !important;
+                height: 180px !important;
                 padding: 15px !important;
             }
             
             .product-content {
                 padding: 15px !important;
-                min-height: 200px !important;
             }
             
             .product-title {
@@ -1334,19 +1278,6 @@
                 top: 10px !important;
                 left: 10px !important;
             }
-            
-            /* Pourquoi nous cartes sur mobile */
-            .why-card {
-                padding: 25px 20px !important;
-                margin-bottom: 20px !important;
-            }
-            
-            .why-card i {
-                width: 60px !important;
-                height: 60px !important;
-                font-size: 24px !important;
-                margin-bottom: 15px !important;
-            }
 
             /* Stats mobile */
             .stats-container {
@@ -1365,62 +1296,26 @@
             .stat-item p {
                 font-size: 1rem;
             }
-            
-            /* Témoignages sur mobile */
-            .testimonial-card {
-                padding: 25px 20px !important;
-            }
-            
-            /* Contact form sur mobile */
-            .contact-form input,
-            .contact-form textarea {
-                padding: 14px 20px !important;
-                font-size: 16px !important;
-            }
-            
-            /* Footer ajustements */
-            .footer-grid {
-                gap: 30px !important;
-            }
-            
-            .copyright p {
-                font-size: 0.8rem !important;
-                line-height: 1.4 !important;
-            }
         }
 
         @media (max-width: 480px) {
-            /* Très petits écrans */
-            .product-image {
-                height: 200px !important;
-                min-height: 200px !important;
-            }
-            
-            .carousel-wrapper .product-card {
-                min-height: 400px !important;
-            }
-            
             .hero h1 {
-                font-size: 1.6rem !important;
+                font-size: 1.8rem;
             }
-            
+
             .hero-subtitle {
-                font-size: 0.9rem !important;
+                font-size: 1rem;
             }
-            
+
             #typing {
-                font-size: 1rem !important;
-                min-height: 35px !important;
+                font-size: 1rem;
+                min-height: 30px;
             }
-            
-            .product-title {
-                font-size: 1rem !important;
+
+            h2 {
+                font-size: 1.8rem;
             }
-            
-            .product-price {
-                font-size: 1.1rem !important;
-            }
-            
+
             .stats-container {
                 grid-template-columns: 1fr;
             }
@@ -1430,6 +1325,18 @@
                 min-width: calc(85vw - 20px) !important;
             }
             
+            .product-image {
+                height: 160px !important;
+            }
+            
+            .product-title {
+                font-size: 1rem !important;
+            }
+            
+            .product-price {
+                font-size: 1.2rem !important;
+            }
+
             .carousel-arrow {
                 width: 35px;
                 height: 35px;
@@ -1443,23 +1350,6 @@
             .carousel-arrow.next {
                 margin-right: -15px;
             }
-        }
-        
-        /* Desktop - optimisation des images */
-        @media (min-width: 769px) {
-            .product-image img {
-                max-height: 320px;
-                object-fit: contain;
-            }
-        }
-        
-        /* Correction pour le body avec classe touch-device */
-        body.touch-device .product-card:hover {
-            transform: none !important;
-        }
-        
-        body.touch-device .btn:hover {
-            transform: none !important;
         }
     </style>
 </head>
@@ -1836,13 +1726,6 @@
     </a>
 
     <script>
-        // ===== DÉTECTION APPAREIL TACTILE =====
-        let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        
-        if (isTouchDevice) {
-            document.body.classList.add('touch-device');
-        }
-
         // ===== EFFET MACHINE À ÉCRIRE =====
         const texts = [
             "Montres Connectées de dernière génération ⌚",
@@ -2260,7 +2143,7 @@
         let watchesDisplayed = 0;
         let accessoriesDisplayed = 0;
         const watchesToShow = 6;
-        const accessoriesToShow = 6;
+        const accessoriesToShow = 6; // Changé de 4 à 6 comme demandé
         const loadMoreCount = 6;
 
         // Fonction pour générer le HTML d'une carte produit
@@ -2323,9 +2206,6 @@
             
             // Initialiser les carrousels
             initializeCarousels();
-            
-            // Ajuster la hauteur des images après chargement
-            adjustProductImages();
           }, 100);
         }
 
@@ -2679,35 +2559,8 @@
           });
         }
 
-        // ===== AJUSTER LA HAUTEUR DES IMAGES =====
-        function adjustProductImages() {
-            document.querySelectorAll('.product-image').forEach(container => {
-                const card = container.closest('.product-card');
-                if (card && card.offsetHeight > 0) {
-                    // Appliquer 70% de la hauteur de la carte
-                    container.style.height = Math.floor(card.offsetHeight * 0.7) + 'px';
-                }
-            });
-        }
-
-        // ===== OPTIMISATION POUR MOBILE =====
-        if (isTouchDevice) {
-            // Empêcher les doubles clics sur mobile
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('btn') || e.target.closest('.btn')) {
-                    e.target.style.pointerEvents = 'none';
-                    setTimeout(() => {
-                        e.target.style.pointerEvents = 'auto';
-                    }, 500);
-                }
-            });
-        }
-
         // ===== GESTION DU REDIMENSIONNEMENT =====
-        window.addEventListener('resize', function() {
-            initializeCarousels();
-            setTimeout(adjustProductImages, 100);
-        });
+        window.addEventListener('resize', initializeCarousels);
 
         // ===== INITIALISATION =====
         document.addEventListener('DOMContentLoaded', () => {
@@ -2726,9 +2579,6 @@
           
           // Initialiser les carrousels
           initializeCarousels();
-          
-          // Ajuster les images après chargement complet
-          window.addEventListener('load', adjustProductImages);
         });
     </script>
 </body>
