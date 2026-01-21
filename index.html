@@ -1360,6 +1360,11 @@
             .stat-item p {
                 font-size: 1rem;
             }
+            
+            /* Bouton Charger Plus visible sur mobile aussi */
+            .load-more-container {
+                display: block !important;
+            }
         }
 
         /* Ajustements pour écrans de taille moyenne */
@@ -2234,8 +2239,6 @@
         let isLoading = false;
         let hasReachedEndWatches = false;
         let hasReachedEndAccessories = false;
-        let lastScrollTop = 0;
-        let scrollThrottleTimer = null;
 
         // Fonction pour générer le HTML d'une carte produit
         function generateProductCard(product, isMobile = false) {
@@ -2269,81 +2272,6 @@
           `;
         }
 
-        // Fonction pour détecter si on est en bas de page (version améliorée pour mobile)
-        function isBottomOfPage() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight;
-            const clientHeight = document.documentElement.clientHeight;
-            
-            // Sur mobile, être plus proche du bas (50px)
-            const threshold = isMobileDevice() ? 50 : 100;
-            
-            return scrollTop + clientHeight >= scrollHeight - threshold;
-        }
-
-        // Fonction pour détecter quelle section est visible
-        function getVisibleSection() {
-            if (hasReachedEndWatches && hasReachedEndAccessories) return null;
-            
-            const watchesSection = document.getElementById('produits');
-            const accessoriesSection = document.getElementById('accessoires');
-            
-            if (!watchesSection || !accessoriesSection) return null;
-            
-            const watchesRect = watchesSection.getBoundingClientRect();
-            const accessoriesRect = accessoriesSection.getBoundingClientRect();
-            
-            const viewportHeight = window.innerHeight;
-            const viewportMiddle = viewportHeight / 2;
-            
-            // Vérifier quelle section a son centre le plus proche du milieu de la vue
-            const watchesCenter = watchesRect.top + (watchesRect.height / 2);
-            const accessoriesCenter = accessoriesRect.top + (accessoriesRect.height / 2);
-            
-            const watchesDistance = Math.abs(watchesCenter - viewportMiddle);
-            const accessoriesDistance = Math.abs(accessoriesCenter - viewportMiddle);
-            
-            // Si une section occupe plus de 30% de la vue, elle est considérée comme visible
-            if (watchesRect.bottom > 0 && watchesRect.top < viewportHeight) {
-                const watchesVisibleRatio = (Math.min(watchesRect.bottom, viewportHeight) - Math.max(watchesRect.top, 0)) / viewportHeight;
-                if (watchesVisibleRatio > 0.3 && !hasReachedEndWatches) {
-                    return 'watches';
-                }
-            }
-            
-            if (accessoriesRect.bottom > 0 && accessoriesRect.top < viewportHeight) {
-                const accessoriesVisibleRatio = (Math.min(accessoriesRect.bottom, viewportHeight) - Math.max(accessoriesRect.top, 0)) / viewportHeight;
-                if (accessoriesVisibleRatio > 0.3 && !hasReachedEndAccessories) {
-                    return 'accessories';
-                }
-            }
-            
-            return null;
-        }
-
-        // Fonction pour gérer le scroll infini sur mobile (version améliorée)
-        function handleInfiniteScroll() {
-            if (!isMobileDevice() || isLoading) return;
-            
-            // Vérifier si on est en bas de la page
-            if (isBottomOfPage()) {
-                const visibleSection = getVisibleSection();
-                
-                if (visibleSection === 'watches' && !hasReachedEndWatches) {
-                    loadMoreWatches();
-                } else if (visibleSection === 'accessories' && !hasReachedEndAccessories) {
-                    loadMoreAccessories();
-                } else if (!visibleSection) {
-                    // Si aucune section n'est visible mais on est en bas, charger les montres par défaut
-                    if (!hasReachedEndWatches) {
-                        loadMoreWatches();
-                    } else if (!hasReachedEndAccessories) {
-                        loadMoreAccessories();
-                    }
-                }
-            }
-        }
-
         // Fonction pour détecter si on est sur mobile
         function isMobileDevice() {
             return window.innerWidth <= 768;
@@ -2375,10 +2303,8 @@
                     // Masquer le spinner
                     spinner.remove();
                     
-                    // Afficher un message de succès sur mobile
-                    if (isMobileDevice()) {
-                        showNotification(`${watchesToLoad} nouvelles montres chargées !`);
-                    }
+                    // Afficher un message de succès
+                    showNotification(`${watchesToLoad} nouvelles montres chargées !`);
                 } else {
                     hasReachedEndWatches = true;
                     spinner.remove();
@@ -2423,10 +2349,8 @@
                     // Masquer le spinner
                     spinner.remove();
                     
-                    // Afficher un message de succès sur mobile
-                    if (isMobileDevice()) {
-                        showNotification(`${accessoriesToLoad} nouveaux accessoires chargés !`);
-                    }
+                    // Afficher un message de succès
+                    showNotification(`${accessoriesToLoad} nouveaux accessoires chargés !`);
                 } else {
                     hasReachedEndAccessories = true;
                     spinner.remove();
@@ -2472,11 +2396,9 @@
             document.getElementById('watches-count').textContent = watchesDisplayed;
             document.getElementById('watches-total').textContent = products.montres.length;
             
-            // Gérer le bouton "Charger plus" (visible seulement sur desktop)
+            // Gérer le bouton "Charger plus" - TOUJOURS VISIBLE SUR MOBILE ET DESKTOP
             const loadMoreBtn = document.getElementById('load-more-watches');
-            if (isMobileDevice()) {
-                loadMoreBtn.style.display = 'none';
-            } else if (watchesDisplayed >= products.montres.length) {
+            if (watchesDisplayed >= products.montres.length) {
                 loadMoreBtn.style.display = 'none';
                 // Ajouter le message de fin si pas déjà présent
                 if (!document.querySelector('#watches-load-more .end-of-products')) {
@@ -2500,11 +2422,6 @@
                         showProductDetails(productData);
                     });
                 });
-                
-                // Mettre à jour les indicateurs du carrousel
-                if (isMobileDevice() && indicatorsContainer) {
-                    updateCarouselIndicators('watches');
-                }
             }, 100);
         }
 
@@ -2535,11 +2452,9 @@
             document.getElementById('accessories-count').textContent = accessoriesDisplayed;
             document.getElementById('accessories-total').textContent = products.accessoires.length;
             
-            // Gérer le bouton "Charger plus" (visible seulement sur desktop)
+            // Gérer le bouton "Charger plus" - TOUJOURS VISIBLE SUR MOBILE ET DESKTOP
             const loadMoreBtn = document.getElementById('load-more-accessories');
-            if (isMobileDevice()) {
-                loadMoreBtn.style.display = 'none';
-            } else if (accessoriesDisplayed >= products.accessoires.length) {
+            if (accessoriesDisplayed >= products.accessoires.length) {
                 loadMoreBtn.style.display = 'none';
                 // Ajouter le message de fin si pas déjà présent
                 if (!document.querySelector('#accessories-load-more .end-of-products')) {
@@ -2563,11 +2478,6 @@
                         showProductDetails(productData);
                     });
                 });
-                
-                // Mettre à jour les indicateurs du carrousel
-                if (isMobileDevice() && indicatorsContainer) {
-                    updateCarouselIndicators('accessories');
-                }
             }, 100);
         }
 
@@ -2835,23 +2745,6 @@
         // ===== GESTION DU REDIMENSIONNEMENT =====
         window.addEventListener('resize', () => {
             initializeCarousels();
-            
-            // Ajuster l'affichage des boutons "Charger plus"
-            const watchesBtn = document.getElementById('load-more-watches');
-            const accessoriesBtn = document.getElementById('load-more-accessories');
-            
-            if (isMobileDevice()) {
-                watchesBtn.style.display = 'none';
-                accessoriesBtn.style.display = 'none';
-            } else {
-                // Rétablir l'affichage si nécessaire
-                if (watchesDisplayed < products.montres.length) {
-                    watchesBtn.style.display = 'inline-flex';
-                }
-                if (accessoriesDisplayed < products.accessoires.length) {
-                    accessoriesBtn.style.display = 'inline-flex';
-                }
-            }
         });
 
         // ===== INITIALISATION =====
@@ -2877,32 +2770,9 @@
             // Initialiser les carrousels
             initializeCarousels();
             
-            // Événement pour le bouton "Charger plus" (desktop)
+            // Événement pour le bouton "Charger plus" (visible sur mobile et desktop)
             document.getElementById('load-more-watches').addEventListener('click', loadMoreWatches);
             document.getElementById('load-more-accessories').addEventListener('click', loadMoreAccessories);
-            
-            // Événement pour le scroll infini (mobile)
-            if (isMobileDevice()) {
-                // Détection améliorée du scroll
-                window.addEventListener('scroll', () => {
-                    // Détecter le défilement vers le bas
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    const scrollingDown = scrollTop > lastScrollTop;
-                    lastScrollTop = scrollTop;
-                    
-                    // Ne déclencher que lors du défilement vers le bas
-                    if (scrollingDown) {
-                        // Éviter les déclenchements trop fréquents
-                        if (scrollThrottleTimer) {
-                            clearTimeout(scrollThrottleTimer);
-                        }
-                        
-                        scrollThrottleTimer = setTimeout(() => {
-                            handleInfiniteScroll();
-                        }, 300); // Attendre 300ms après le dernier scroll
-                    }
-                }, { passive: true });
-            }
             
             // Observer les cartes initiales
             setTimeout(() => {
