@@ -2235,6 +2235,7 @@
         let hasReachedEndWatches = false;
         let hasReachedEndAccessories = false;
         let lastScrollTop = 0;
+        let scrollThrottleTimer = null;
 
         // Fonction pour générer le HTML d'une carte produit
         function generateProductCard(product, isMobile = false) {
@@ -2268,31 +2269,77 @@
           `;
         }
 
-        // Fonction pour détecter si on est en bas de page
+        // Fonction pour détecter si on est en bas de page (version améliorée pour mobile)
         function isBottomOfPage() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight;
             const clientHeight = document.documentElement.clientHeight;
             
-            // Détecter si on est à 100px du bas de la page
-            return scrollTop + clientHeight >= scrollHeight - 100;
+            // Sur mobile, être plus proche du bas (50px)
+            const threshold = isMobileDevice() ? 50 : 100;
+            
+            return scrollTop + clientHeight >= scrollHeight - threshold;
         }
 
-        // Fonction pour gérer le scroll infini sur mobile
+        // Fonction pour détecter quelle section est visible
+        function getVisibleSection() {
+            if (hasReachedEndWatches && hasReachedEndAccessories) return null;
+            
+            const watchesSection = document.getElementById('produits');
+            const accessoriesSection = document.getElementById('accessoires');
+            
+            if (!watchesSection || !accessoriesSection) return null;
+            
+            const watchesRect = watchesSection.getBoundingClientRect();
+            const accessoriesRect = accessoriesSection.getBoundingClientRect();
+            
+            const viewportHeight = window.innerHeight;
+            const viewportMiddle = viewportHeight / 2;
+            
+            // Vérifier quelle section a son centre le plus proche du milieu de la vue
+            const watchesCenter = watchesRect.top + (watchesRect.height / 2);
+            const accessoriesCenter = accessoriesRect.top + (accessoriesRect.height / 2);
+            
+            const watchesDistance = Math.abs(watchesCenter - viewportMiddle);
+            const accessoriesDistance = Math.abs(accessoriesCenter - viewportMiddle);
+            
+            // Si une section occupe plus de 30% de la vue, elle est considérée comme visible
+            if (watchesRect.bottom > 0 && watchesRect.top < viewportHeight) {
+                const watchesVisibleRatio = (Math.min(watchesRect.bottom, viewportHeight) - Math.max(watchesRect.top, 0)) / viewportHeight;
+                if (watchesVisibleRatio > 0.3 && !hasReachedEndWatches) {
+                    return 'watches';
+                }
+            }
+            
+            if (accessoriesRect.bottom > 0 && accessoriesRect.top < viewportHeight) {
+                const accessoriesVisibleRatio = (Math.min(accessoriesRect.bottom, viewportHeight) - Math.max(accessoriesRect.top, 0)) / viewportHeight;
+                if (accessoriesVisibleRatio > 0.3 && !hasReachedEndAccessories) {
+                    return 'accessories';
+                }
+            }
+            
+            return null;
+        }
+
+        // Fonction pour gérer le scroll infini sur mobile (version améliorée)
         function handleInfiniteScroll() {
-            if (isMobileDevice() && !isLoading && isBottomOfPage()) {
-                // Détecter quelle section est visible
-                const watchesSection = document.getElementById('produits');
-                const accessoriesSection = document.getElementById('accessoires');
+            if (!isMobileDevice() || isLoading) return;
+            
+            // Vérifier si on est en bas de la page
+            if (isBottomOfPage()) {
+                const visibleSection = getVisibleSection();
                 
-                const watchesRect = watchesSection.getBoundingClientRect();
-                const accessoriesRect = accessoriesSection.getBoundingClientRect();
-                
-                // Vérifier quelle section est la plus proche du bas
-                if (!hasReachedEndWatches && watchesRect.bottom > 0 && watchesRect.top < window.innerHeight) {
+                if (visibleSection === 'watches' && !hasReachedEndWatches) {
                     loadMoreWatches();
-                } else if (!hasReachedEndAccessories && accessoriesRect.bottom > 0 && accessoriesRect.top < window.innerHeight) {
+                } else if (visibleSection === 'accessories' && !hasReachedEndAccessories) {
                     loadMoreAccessories();
+                } else if (!visibleSection) {
+                    // Si aucune section n'est visible mais on est en bas, charger les montres par défaut
+                    if (!hasReachedEndWatches) {
+                        loadMoreWatches();
+                    } else if (!hasReachedEndAccessories) {
+                        loadMoreAccessories();
+                    }
                 }
             }
         }
@@ -2328,8 +2375,10 @@
                     // Masquer le spinner
                     spinner.remove();
                     
-                    // Afficher un message de succès
-                    showNotification(`${watchesToLoad} nouvelles montres chargées !`);
+                    // Afficher un message de succès sur mobile
+                    if (isMobileDevice()) {
+                        showNotification(`${watchesToLoad} nouvelles montres chargées !`);
+                    }
                 } else {
                     hasReachedEndWatches = true;
                     spinner.remove();
@@ -2374,8 +2423,10 @@
                     // Masquer le spinner
                     spinner.remove();
                     
-                    // Afficher un message de succès
-                    showNotification(`${accessoriesToLoad} nouveaux accessoires chargés !`);
+                    // Afficher un message de succès sur mobile
+                    if (isMobileDevice()) {
+                        showNotification(`${accessoriesToLoad} nouveaux accessoires chargés !`);
+                    }
                 } else {
                     hasReachedEndAccessories = true;
                     spinner.remove();
@@ -2449,6 +2500,11 @@
                         showProductDetails(productData);
                     });
                 });
+                
+                // Mettre à jour les indicateurs du carrousel
+                if (isMobileDevice() && indicatorsContainer) {
+                    updateCarouselIndicators('watches');
+                }
             }, 100);
         }
 
@@ -2507,6 +2563,11 @@
                         showProductDetails(productData);
                     });
                 });
+                
+                // Mettre à jour les indicateurs du carrousel
+                if (isMobileDevice() && indicatorsContainer) {
+                    updateCarouselIndicators('accessories');
+                }
             }, 100);
         }
 
@@ -2822,6 +2883,7 @@
             
             // Événement pour le scroll infini (mobile)
             if (isMobileDevice()) {
+                // Détection améliorée du scroll
                 window.addEventListener('scroll', () => {
                     // Détecter le défilement vers le bas
                     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -2830,7 +2892,14 @@
                     
                     // Ne déclencher que lors du défilement vers le bas
                     if (scrollingDown) {
-                        handleInfiniteScroll();
+                        // Éviter les déclenchements trop fréquents
+                        if (scrollThrottleTimer) {
+                            clearTimeout(scrollThrottleTimer);
+                        }
+                        
+                        scrollThrottleTimer = setTimeout(() => {
+                            handleInfiniteScroll();
+                        }, 300); // Attendre 300ms après le dernier scroll
                     }
                 }, { passive: true });
             }
