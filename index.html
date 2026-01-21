@@ -264,6 +264,40 @@
             }
         }
 
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ===== PAGINATION INFINIE ===== */
+        .load-more-container {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .end-of-products {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray);
+            font-style: italic;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
         /* ===== HEADER ===== */
         .main-header {
             background: rgba(255, 255, 255, 0.98);
@@ -635,14 +669,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-top: 12px; /* Réduit de auto à 12px */
-        }
-
-        /* Bouton Charger Plus */
-        .load-more-container {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(0,0,0,0.1);
         }
 
         /* ===== POURQUOI NOUS ===== */
@@ -2200,9 +2226,15 @@
         // Variables pour gérer le chargement des produits
         let watchesDisplayed = 0;
         let accessoriesDisplayed = 0;
-        const watchesToShow = 6;
-        const accessoriesToShow = 6;
+        const initialWatchesToShow = 6;
+        const initialAccessoriesToShow = 6;
         const loadMoreCount = 6;
+
+        // Variables pour l'infinite scroll
+        let isLoading = false;
+        let hasReachedEndWatches = false;
+        let hasReachedEndAccessories = false;
+        let lastScrollTop = 0;
 
         // Fonction pour générer le HTML d'une carte produit
         function generateProductCard(product, isMobile = false) {
@@ -2236,407 +2268,548 @@
           `;
         }
 
-        // Fonction pour afficher les produits
-        function displayProducts() {
-          // Mettre à jour les compteurs
-          document.getElementById('watches-total').textContent = products.montres.length;
-          document.getElementById('accessories-total').textContent = products.accessoires.length;
-          
-          // Afficher les montres
-          displayWatches();
-          
-          // Afficher les accessoires
-          displayAccessories();
-          
-          // Observer les nouvelles cartes produits
-          setTimeout(() => {
-            document.querySelectorAll('.product-card').forEach(card => {
-              observer.observe(card);
-            });
+        // Fonction pour détecter si on est en bas de page
+        function isBottomOfPage() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
             
-            // Gérer les événements de clic sur les boutons "Détails"
-            document.querySelectorAll('.btn-view-details').forEach(btn => {
-              btn.addEventListener('click', function() {
-                const productData = JSON.parse(this.getAttribute('data-product').replace(/&#39;/g, "'"));
-                showProductDetails(productData);
-              });
-            });
+            // Détecter si on est à 100px du bas de la page
+            return scrollTop + clientHeight >= scrollHeight - 100;
+        }
+
+        // Fonction pour gérer le scroll infini sur mobile
+        function handleInfiniteScroll() {
+            if (isMobileDevice() && !isLoading && isBottomOfPage()) {
+                // Détecter quelle section est visible
+                const watchesSection = document.getElementById('produits');
+                const accessoriesSection = document.getElementById('accessoires');
+                
+                const watchesRect = watchesSection.getBoundingClientRect();
+                const accessoriesRect = accessoriesSection.getBoundingClientRect();
+                
+                // Vérifier quelle section est la plus proche du bas
+                if (!hasReachedEndWatches && watchesRect.bottom > 0 && watchesRect.top < window.innerHeight) {
+                    loadMoreWatches();
+                } else if (!hasReachedEndAccessories && accessoriesRect.bottom > 0 && accessoriesRect.top < window.innerHeight) {
+                    loadMoreAccessories();
+                }
+            }
+        }
+
+        // Fonction pour détecter si on est sur mobile
+        function isMobileDevice() {
+            return window.innerWidth <= 768;
+        }
+
+        // Fonction pour charger plus de montres (avec animation)
+        function loadMoreWatches() {
+            if (isLoading || hasReachedEndWatches) return;
             
-            // Initialiser les carrousels
-            initializeCarousels();
-          }, 100);
+            isLoading = true;
+            
+            // Afficher le spinner
+            const spinner = document.createElement('div');
+            spinner.className = 'loading-spinner';
+            spinner.style.display = 'block';
+            const loadMoreContainer = document.getElementById('watches-load-more');
+            loadMoreContainer.appendChild(spinner);
+            
+            // Simuler un délai de chargement (pour l'effet)
+            setTimeout(() => {
+                const remainingWatches = products.montres.length - watchesDisplayed;
+                const watchesToLoad = Math.min(loadMoreCount, remainingWatches);
+                
+                if (remainingWatches > 0) {
+                    // Ajouter les nouvelles montres
+                    watchesDisplayed += watchesToLoad;
+                    displayWatches();
+                    
+                    // Masquer le spinner
+                    spinner.remove();
+                    
+                    // Afficher un message de succès
+                    showNotification(`${watchesToLoad} nouvelles montres chargées !`);
+                } else {
+                    hasReachedEndWatches = true;
+                    spinner.remove();
+                    
+                    // Afficher le message de fin
+                    const endMessage = document.createElement('div');
+                    endMessage.className = 'end-of-products';
+                    endMessage.textContent = '✨ Toutes les montres sont affichées !';
+                    loadMoreContainer.appendChild(endMessage);
+                    
+                    // Cacher le bouton "Charger plus"
+                    document.getElementById('load-more-watches').style.display = 'none';
+                }
+                
+                isLoading = false;
+            }, 800);
+        }
+
+        // Fonction pour charger plus d'accessoires (avec animation)
+        function loadMoreAccessories() {
+            if (isLoading || hasReachedEndAccessories) return;
+            
+            isLoading = true;
+            
+            // Afficher le spinner
+            const spinner = document.createElement('div');
+            spinner.className = 'loading-spinner';
+            spinner.style.display = 'block';
+            const loadMoreContainer = document.getElementById('accessories-load-more');
+            loadMoreContainer.appendChild(spinner);
+            
+            // Simuler un délai de chargement
+            setTimeout(() => {
+                const remainingAccessories = products.accessoires.length - accessoriesDisplayed;
+                const accessoriesToLoad = Math.min(loadMoreCount, remainingAccessories);
+                
+                if (remainingAccessories > 0) {
+                    // Ajouter les nouveaux accessoires
+                    accessoriesDisplayed += accessoriesToLoad;
+                    displayAccessories();
+                    
+                    // Masquer le spinner
+                    spinner.remove();
+                    
+                    // Afficher un message de succès
+                    showNotification(`${accessoriesToLoad} nouveaux accessoires chargés !`);
+                } else {
+                    hasReachedEndAccessories = true;
+                    spinner.remove();
+                    
+                    // Afficher le message de fin
+                    const endMessage = document.createElement('div');
+                    endMessage.className = 'end-of-products';
+                    endMessage.textContent = '✨ Tous les accessoires sont affichés !';
+                    loadMoreContainer.appendChild(endMessage);
+                    
+                    // Cacher le bouton "Charger plus"
+                    document.getElementById('load-more-accessories').style.display = 'none';
+                }
+                
+                isLoading = false;
+            }, 800);
         }
 
         // Fonction pour afficher les montres
         function displayWatches() {
-          const desktopGrid = document.getElementById('desktop-watches');
-          const mobileCarousel = document.getElementById('mobile-watches');
-          const indicatorsContainer = document.getElementById('watches-indicators');
-          
-          // Afficher les premières montres
-          const watchesToDisplay = products.montres.slice(0, watchesDisplayed + watchesToShow);
-          
-          if (desktopGrid) {
-            desktopGrid.innerHTML = watchesToDisplay.map(product => generateProductCard(product)).join('');
-          }
-          
-          if (mobileCarousel) {
-            mobileCarousel.innerHTML = watchesToDisplay.map(product => generateProductCard(product, true)).join('');
-          }
-          
-          if (indicatorsContainer) {
-            indicatorsContainer.innerHTML = watchesToDisplay.map((_, i) => 
-              `<div class="scroll-indicator ${i === 0 ? 'active' : ''}"></div>`
-            ).join('');
-          }
-          
-          // Mettre à jour le compteur
-          watchesDisplayed = watchesToDisplay.length;
-          document.getElementById('watches-count').textContent = watchesDisplayed;
-          
-          // Gérer le bouton "Charger plus"
-          const loadMoreBtn = document.getElementById('load-more-watches');
-          if (watchesDisplayed >= products.montres.length) {
-            loadMoreBtn.style.display = 'none';
-            document.querySelector('#watches-load-more p').textContent = 'Toutes les montres sont affichées';
-          } else {
-            loadMoreBtn.style.display = 'inline-flex';
-            loadMoreBtn.innerHTML = `<i class="fas fa-plus-circle"></i> Charger plus de montres (${Math.min(loadMoreCount, products.montres.length - watchesDisplayed)} autres)`;
-          }
+            const desktopGrid = document.getElementById('desktop-watches');
+            const mobileCarousel = document.getElementById('mobile-watches');
+            const indicatorsContainer = document.getElementById('watches-indicators');
+            
+            // Afficher les montres jusqu'à watchesDisplayed
+            const watchesToDisplay = products.montres.slice(0, watchesDisplayed);
+            
+            if (desktopGrid) {
+                desktopGrid.innerHTML = watchesToDisplay.map(product => generateProductCard(product)).join('');
+            }
+            
+            if (mobileCarousel) {
+                mobileCarousel.innerHTML = watchesToDisplay.map(product => generateProductCard(product, true)).join('');
+            }
+            
+            if (indicatorsContainer && watchesToDisplay.length > 0) {
+                indicatorsContainer.innerHTML = watchesToDisplay.map((_, i) => 
+                    `<div class="scroll-indicator ${i === 0 ? 'active' : ''}"></div>`
+                ).join('');
+            }
+            
+            // Mettre à jour le compteur
+            document.getElementById('watches-count').textContent = watchesDisplayed;
+            
+            // Gérer le bouton "Charger plus" (visible seulement sur desktop)
+            const loadMoreBtn = document.getElementById('load-more-watches');
+            if (isMobileDevice()) {
+                loadMoreBtn.style.display = 'none';
+            } else if (watchesDisplayed >= products.montres.length) {
+                loadMoreBtn.style.display = 'none';
+                loadMoreBtn.parentElement.innerHTML += '<div class="end-of-products">✨ Toutes les montres sont affichées !</div>';
+            } else {
+                loadMoreBtn.style.display = 'inline-flex';
+                loadMoreBtn.innerHTML = `<i class="fas fa-plus-circle"></i> Charger plus de montres (${Math.min(loadMoreCount, products.montres.length - watchesDisplayed)} autres)`;
+            }
         }
 
         // Fonction pour afficher les accessoires
         function displayAccessories() {
-          const desktopGrid = document.getElementById('desktop-accessories');
-          const mobileCarousel = document.getElementById('mobile-accessories');
-          const indicatorsContainer = document.getElementById('accessories-indicators');
-          
-          // Afficher les premiers accessoires
-          const accessoriesToDisplay = products.accessoires.slice(0, accessoriesDisplayed + accessoriesToShow);
-          
-          if (desktopGrid) {
-            desktopGrid.innerHTML = accessoriesToDisplay.map(product => generateProductCard(product)).join('');
-          }
-          
-          if (mobileCarousel) {
-            mobileCarousel.innerHTML = accessoriesToDisplay.map(product => generateProductCard(product, true)).join('');
-          }
-          
-          if (indicatorsContainer) {
-            indicatorsContainer.innerHTML = accessoriesToDisplay.map((_, i) => 
-              `<div class="scroll-indicator ${i === 0 ? 'active' : ''}"></div>`
-            ).join('');
-          }
-          
-          // Mettre à jour le compteur
-          accessoriesDisplayed = accessoriesToDisplay.length;
-          document.getElementById('accessories-count').textContent = accessoriesDisplayed;
-          
-          // Gérer le bouton "Charger plus"
-          const loadMoreBtn = document.getElementById('load-more-accessories');
-          if (accessoriesDisplayed >= products.accessoires.length) {
-            loadMoreBtn.style.display = 'none';
-            document.querySelector('#accessories-load-more p').textContent = 'Tous les accessoires sont affichés';
-          } else {
-            loadMoreBtn.style.display = 'inline-flex';
-            loadMoreBtn.innerHTML = `<i class="fas fa-plus-circle"></i> Charger plus d'accessoires (${Math.min(3, products.accessoires.length - accessoriesDisplayed)} autres)`;
-          }
+            const desktopGrid = document.getElementById('desktop-accessories');
+            const mobileCarousel = document.getElementById('mobile-accessories');
+            const indicatorsContainer = document.getElementById('accessories-indicators');
+            
+            // Afficher les accessoires jusqu'à accessoriesDisplayed
+            const accessoriesToDisplay = products.accessoires.slice(0, accessoriesDisplayed);
+            
+            if (desktopGrid) {
+                desktopGrid.innerHTML = accessoriesToDisplay.map(product => generateProductCard(product)).join('');
+            }
+            
+            if (mobileCarousel) {
+                mobileCarousel.innerHTML = accessoriesToDisplay.map(product => generateProductCard(product, true)).join('');
+            }
+            
+            if (indicatorsContainer && accessoriesToDisplay.length > 0) {
+                indicatorsContainer.innerHTML = accessoriesToDisplay.map((_, i) => 
+                    `<div class="scroll-indicator ${i === 0 ? 'active' : ''}"></div>`
+                ).join('');
+            }
+            
+            // Mettre à jour le compteur
+            document.getElementById('accessories-count').textContent = accessoriesDisplayed;
+            
+            // Gérer le bouton "Charger plus" (visible seulement sur desktop)
+            const loadMoreBtn = document.getElementById('load-more-accessories');
+            if (isMobileDevice()) {
+                loadMoreBtn.style.display = 'none';
+            } else if (accessoriesDisplayed >= products.accessoires.length) {
+                loadMoreBtn.style.display = 'none';
+                loadMoreBtn.parentElement.innerHTML += '<div class="end-of-products">✨ Tous les accessoires sont affichés !</div>';
+            } else {
+                loadMoreBtn.style.display = 'inline-flex';
+                loadMoreBtn.innerHTML = `<i class="fas fa-plus-circle"></i> Charger plus d'accessoires (${Math.min(loadMoreCount, products.accessoires.length - accessoriesDisplayed)} autres)`;
+            }
         }
 
         // Fonction pour initialiser les carrousels
         function initializeCarousels() {
-          // Détection du mobile
-          const isMobile = window.innerWidth <= 768;
-          
-          if (isMobile) {
-            // Activer les carrousels
-            document.querySelectorAll('.carousel-container').forEach(container => {
-              container.style.display = 'block';
-            });
+            // Détection du mobile
+            const isMobile = window.innerWidth <= 768;
             
-            // Désactiver les grilles desktop
-            document.querySelectorAll('.product-grid').forEach(grid => {
-              grid.style.display = 'none';
-            });
-            
-            // Initialiser les flèches
-            setupCarouselArrows();
-          } else {
-            document.querySelectorAll('.carousel-container').forEach(container => {
-              container.style.display = 'none';
-            });
-            
-            document.querySelectorAll('.product-grid').forEach(grid => {
-              grid.style.display = 'grid';
-            });
-          }
+            if (isMobile) {
+                // Activer les carrousels
+                document.querySelectorAll('.carousel-container').forEach(container => {
+                    container.style.display = 'block';
+                });
+                
+                // Désactiver les grilles desktop
+                document.querySelectorAll('.product-grid').forEach(grid => {
+                    grid.style.display = 'none';
+                });
+                
+                // Initialiser les flèches
+                setupCarouselArrows();
+            } else {
+                document.querySelectorAll('.carousel-container').forEach(container => {
+                    container.style.display = 'none';
+                });
+                
+                document.querySelectorAll('.product-grid').forEach(grid => {
+                    grid.style.display = 'grid';
+                });
+            }
         }
 
         // Fonction pour configurer les flèches de navigation
         function setupCarouselArrows() {
-          document.querySelectorAll('.carousel-arrow').forEach(arrow => {
-            arrow.addEventListener('click', function() {
-              const carouselType = this.getAttribute('data-carousel');
-              const isPrev = this.classList.contains('prev');
-              const carouselId = `mobile-${carouselType}`;
-              
-              const carousel = document.getElementById(carouselId);
-              if (!carousel) return;
-              
-              const cardWidth = carousel.querySelector('.product-card').offsetWidth + 20;
-              const scrollAmount = isPrev ? -cardWidth : cardWidth;
-              
-              carousel.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-              });
-              
-              // Mettre à jour les indicateurs après le défilement
-              setTimeout(() => updateCarouselIndicators(carouselType), 300);
+            document.querySelectorAll('.carousel-arrow').forEach(arrow => {
+                arrow.addEventListener('click', function() {
+                    const carouselType = this.getAttribute('data-carousel');
+                    const isPrev = this.classList.contains('prev');
+                    const carouselId = `mobile-${carouselType}`;
+                    
+                    const carousel = document.getElementById(carouselId);
+                    if (!carousel) return;
+                    
+                    const cardWidth = carousel.querySelector('.product-card').offsetWidth + 20;
+                    const scrollAmount = isPrev ? -cardWidth : cardWidth;
+                    
+                    carousel.scrollBy({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Mettre à jour les indicateurs après le défilement
+                    setTimeout(() => updateCarouselIndicators(carouselType), 300);
+                });
             });
-          });
         }
 
         // Fonction pour mettre à jour les indicateurs
         function updateCarouselIndicators(carouselType) {
-          const carousel = document.getElementById(`mobile-${carouselType}`);
-          const indicators = document.querySelectorAll(`#${carouselType}-indicators .scroll-indicator`);
-          
-          if (!carousel || !indicators.length) return;
-          
-          const scrollPosition = carousel.scrollLeft;
-          const cardWidth = carousel.querySelector('.product-card').offsetWidth + 20;
-          const activeIndex = Math.round(scrollPosition / cardWidth);
-          
-          indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === activeIndex);
-          });
+            const carousel = document.getElementById(`mobile-${carouselType}`);
+            const indicators = document.querySelectorAll(`#${carouselType}-indicators .scroll-indicator`);
+            
+            if (!carousel || !indicators.length) return;
+            
+            const scrollPosition = carousel.scrollLeft;
+            const cardWidth = carousel.querySelector('.product-card').offsetWidth + 20;
+            const activeIndex = Math.round(scrollPosition / cardWidth);
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === activeIndex);
+            });
         }
-
-        // ===== GESTION DES BOUTONS "CHARGER PLUS" =====
-        document.addEventListener('click', function(e) {
-          // Bouton Charger plus de montres
-          if (e.target && (e.target.id === 'load-more-watches' || e.target.closest('#load-more-watches'))) {
-            displayWatches();
-          }
-          
-          // Bouton Charger plus d'accessoires
-          if (e.target && (e.target.id === 'load-more-accessories' || e.target.closest('#load-more-accessories'))) {
-            displayAccessories();
-          }
-        });
 
         // ===== MODAL PRODUIT AVEC DÉTAILS =====
         function showProductDetails(product) {
-          const modalHTML = `
-            <div class="modal-overlay">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h3>${product.name}</h3>
-                  <button class="close-modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <div class="product-price-large">${product.price}</div>
-                  <p><strong>Description :</strong> ${product.description}</p>
-                  <div class="product-detail">
-                    <h4>Détails du produit :</h4>
-                    <p>${product.detail || 'Détails techniques non disponibles'}</p>
-                  </div>
-                  <div class="contact-info-modal">
-                    <h4>Pour commander ou obtenir plus d'informations :</h4>
-                    <div class="whatsapp-contact">
-                      <i class="fab fa-whatsapp"></i>
-                      <div>
-                        <p><strong>Contact WhatsApp :</strong></p>
-                        <p>+226 76 70 70 08</p>
-                      </div>
+            const modalHTML = `
+                <div class="modal-overlay">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>${product.name}</h3>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="product-price-large">${product.price}</div>
+                            <p><strong>Description :</strong> ${product.description}</p>
+                            <div class="product-detail">
+                                <h4>Détails du produit :</h4>
+                                <p>${product.detail || 'Détails techniques non disponibles'}</p>
+                            </div>
+                            <div class="contact-info-modal">
+                                <h4>Pour commander ou obtenir plus d'informations :</h4>
+                                <div class="whatsapp-contact">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <div>
+                                        <p><strong>Contact WhatsApp :</strong></p>
+                                        <p>+226 76 70 70 08</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-features">
+                                <h4>Avantages Elite Smart :</h4>
+                                <ul>
+                                    <li>Garantie 2 ans</li>
+                                    <li>Livraison gratuite à Ouagadougou</li>
+                                    <li>Support technique 24/7</li>
+                                    <li>Retour sous 14 jours</li>
+                                    <li>Installation et configuration gratuite</li>
+                                    <li>Paiement sécurisé</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-actions">
+                            <a href="https://wa.me/22676707008?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(product.price)})" class="btn btn-whatsapp" target="_blank" style="flex: 1;">
+                                <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+                            </a>
+                        </div>
                     </div>
-                  </div>
-                  <div class="modal-features">
-                    <h4>Avantages Elite Smart :</h4>
-                    <ul>
-                      <li>Garantie 2 ans</li>
-                      <li>Livraison gratuite à Ouagadougou</li>
-                      <li>Support technique 24/7</li>
-                      <li>Retour sous 14 jours</li>
-                      <li>Installation et configuration gratuite</li>
-                      <li>Paiement sécurisé</li>
-                    </ul>
-                  </div>
                 </div>
-                <div class="modal-actions">
-                  <a href="https://wa.me/22676707008?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(product.price)})" class="btn btn-whatsapp" target="_blank" style="flex: 1;">
-                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                  </a>
-                </div>
-              </div>
-            </div>
-          `;
-          
-          const modal = document.createElement('div');
-          modal.innerHTML = modalHTML;
-          document.body.appendChild(modal);
-          
-          // CSS pour le modal
-          const modalStyle = document.createElement('style');
-          modalStyle.textContent = `
-            .modal-overlay {
-              position: fixed;
-              top: 0;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              background: rgba(0,0,0,0.8);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              z-index: 2000;
-              animation: fadeIn 0.3s ease;
-            }
+            `;
             
-            .modal-content {
-              background: white;
-              border-radius: var(--radius);
-              padding: 30px;
-              max-width: 500px;
-              width: 90%;
-              max-height: 80vh;
-              overflow-y: auto;
-              animation: slideUp 0.3s ease;
-            }
+            const modal = document.createElement('div');
+            modal.innerHTML = modalHTML;
+            document.body.appendChild(modal);
             
-            .modal-header {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              margin-bottom: 20px;
-            }
+            // CSS pour le modal
+            const modalStyle = document.createElement('style');
+            modalStyle.textContent = `
+                .modal-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0,0,0,0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2000;
+                    animation: fadeIn 0.3s ease;
+                }
+                
+                .modal-content {
+                    background: white;
+                    border-radius: var(--radius);
+                    padding: 30px;
+                    max-width: 500px;
+                    width: 90%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    animation: slideUp 0.3s ease;
+                }
+                
+                .modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 20px;
+                }
+                
+                .modal-header h3 {
+                    color: var(--primary);
+                    margin: 0;
+                }
+                
+                .close-modal {
+                    background: none;
+                    border: none;
+                    font-size: 24px;
+                    cursor: pointer;
+                    color: var(--dark);
+                }
+                
+                .product-price-large {
+                    font-size: 1.8rem;
+                    color: var(--primary);
+                    font-weight: 800;
+                    margin-bottom: 20px;
+                }
+                
+                .modal-features {
+                    margin-top: 20px;
+                }
+                
+                .modal-features ul {
+                    list-style: none;
+                    padding-left: 0;
+                }
+                
+                .modal-features li {
+                    padding: 8px 0;
+                    border-bottom: 1px solid #eee;
+                }
+                
+                .modal-features li:before {
+                    content: '✓';
+                    color: var(--secondary);
+                    font-weight: bold;
+                    margin-right: 10px;
+                }
+                
+                .modal-actions {
+                    margin-top: 30px;
+                }
+                
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                
+                @keyframes slideUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(50px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                @keyframes slideInRight {
+                    from {
+                        opacity: 0;
+                        transform: translateX(50px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+                
+                @keyframes slideOutRight {
+                    from {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                    to {
+                        opacity: 0;
+                        transform: translateX(50px);
+                    }
+                }
+            `;
             
-            .modal-header h3 {
-              color: var(--primary);
-              margin: 0;
-            }
+            document.head.appendChild(modalStyle);
             
-            .close-modal {
-              background: none;
-              border: none;
-              font-size: 24px;
-              cursor: pointer;
-              color: var(--dark);
-            }
+            // Fermer le modal
+            modal.querySelector('.close-modal').addEventListener('click', () => {
+                modal.remove();
+                modalStyle.remove();
+            });
             
-            .product-price-large {
-              font-size: 1.8rem;
-              color: var(--primary);
-              font-weight: 800;
-              margin-bottom: 20px;
-            }
+            modal.querySelector('.modal-overlay').addEventListener('click', (e) => {
+                if (e.target === modal.querySelector('.modal-overlay')) {
+                    modal.remove();
+                    modalStyle.remove();
+                }
+            });
             
-            .modal-features {
-              margin-top: 20px;
-            }
-            
-            .modal-features ul {
-              list-style: none;
-              padding-left: 0;
-            }
-            
-            .modal-features li {
-              padding: 8px 0;
-              border-bottom: 1px solid #eee;
-            }
-            
-            .modal-features li:before {
-              content: '✓';
-              color: var(--secondary);
-              font-weight: bold;
-              margin-right: 10px;
-            }
-            
-            .modal-actions {
-              margin-top: 30px;
-            }
-            
-            @keyframes fadeIn {
-              from { opacity: 0; }
-              to { opacity: 1; }
-            }
-            
-            @keyframes slideUp {
-              from {
-                opacity: 0;
-                transform: translateY(50px);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-            
-            @keyframes slideInRight {
-              from {
-                opacity: 0;
-                transform: translateX(50px);
-              }
-              to {
-                opacity: 1;
-                transform: translateX(0);
-              }
-            }
-            
-            @keyframes slideOutRight {
-              from {
-                opacity: 1;
-                transform: translateX(0);
-              }
-              to {
-                opacity: 0;
-                transform: translateX(50px);
-              }
-            }
-          `;
-          
-          document.head.appendChild(modalStyle);
-          
-          // Fermer le modal
-          modal.querySelector('.close-modal').addEventListener('click', () => {
-            modal.remove();
-            modalStyle.remove();
-          });
-          
-          modal.querySelector('.modal-overlay').addEventListener('click', (e) => {
-            if (e.target === modal.querySelector('.modal-overlay')) {
-              modal.remove();
-              modalStyle.remove();
-            }
-          });
-          
-          // Empêcher la fermeture en cliquant sur le contenu
-          modal.querySelector('.modal-content').addEventListener('click', (e) => {
-            e.stopPropagation();
-          });
+            // Empêcher la fermeture en cliquant sur le contenu
+            modal.querySelector('.modal-content').addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
         }
 
         // ===== GESTION DU REDIMENSIONNEMENT =====
-        window.addEventListener('resize', initializeCarousels);
+        window.addEventListener('resize', () => {
+            initializeCarousels();
+            
+            // Ajuster l'affichage des boutons "Charger plus"
+            const watchesBtn = document.getElementById('load-more-watches');
+            const accessoriesBtn = document.getElementById('load-more-accessories');
+            
+            if (isMobileDevice()) {
+                watchesBtn.style.display = 'none';
+                accessoriesBtn.style.display = 'none';
+            } else {
+                // Rétablir l'affichage si nécessaire
+                if (watchesDisplayed < products.montres.length) {
+                    watchesBtn.style.display = 'inline-flex';
+                }
+                if (accessoriesDisplayed < products.accessoires.length) {
+                    accessoriesBtn.style.display = 'inline-flex';
+                }
+            }
+        });
 
         // ===== INITIALISATION =====
         document.addEventListener('DOMContentLoaded', () => {
-          // Sections principales
-          document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-          });
-          
-          // Cartes "Pourquoi nous"
-          document.querySelectorAll('.why-card').forEach(card => {
-            observer.observe(card);
-          });
-          
-          // Afficher les produits
-          displayProducts();
-          
-          // Initialiser les carrousels
-          initializeCarousels();
+            // Sections principales
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Cartes "Pourquoi nous"
+            document.querySelectorAll('.why-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Initialiser le nombre de produits à afficher
+            watchesDisplayed = initialWatchesToShow;
+            accessoriesDisplayed = initialAccessoriesToShow;
+            
+            // Mettre à jour les compteurs
+            document.getElementById('watches-total').textContent = products.montres.length;
+            document.getElementById('accessories-total').textContent = products.accessoires.length;
+            
+            // Afficher les produits
+            displayWatches();
+            displayAccessories();
+            
+            // Initialiser les carrousels
+            initializeCarousels();
+            
+            // Gérer les événements de clic sur les boutons "Détails"
+            setTimeout(() => {
+                document.querySelectorAll('.btn-view-details').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const productData = JSON.parse(this.getAttribute('data-product').replace(/&#39;/g, "'"));
+                        showProductDetails(productData);
+                    });
+                });
+            }, 100);
+            
+            // Événement pour le bouton "Charger plus" (desktop)
+            document.getElementById('load-more-watches').addEventListener('click', loadMoreWatches);
+            document.getElementById('load-more-accessories').addEventListener('click', loadMoreAccessories);
+            
+            // Événement pour le scroll infini (mobile)
+            if (isMobileDevice()) {
+                window.addEventListener('scroll', () => {
+                    // Détecter le défilement vers le bas
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const scrollingDown = scrollTop > lastScrollTop;
+                    lastScrollTop = scrollTop;
+                    
+                    // Ne déclencher que lors du défilement vers le bas
+                    if (scrollingDown) {
+                        handleInfiniteScroll();
+                    }
+                }, { passive: true });
+            }
         });
     </script>
 </body>
