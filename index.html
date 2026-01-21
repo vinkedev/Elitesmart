@@ -2419,6 +2419,7 @@
             
             // Mettre à jour le compteur
             document.getElementById('watches-count').textContent = watchesDisplayed;
+            document.getElementById('watches-total').textContent = products.montres.length;
             
             // Gérer le bouton "Charger plus" (visible seulement sur desktop)
             const loadMoreBtn = document.getElementById('load-more-watches');
@@ -2426,11 +2427,29 @@
                 loadMoreBtn.style.display = 'none';
             } else if (watchesDisplayed >= products.montres.length) {
                 loadMoreBtn.style.display = 'none';
-                loadMoreBtn.parentElement.innerHTML += '<div class="end-of-products">✨ Toutes les montres sont affichées !</div>';
+                // Ajouter le message de fin si pas déjà présent
+                if (!document.querySelector('#watches-load-more .end-of-products')) {
+                    loadMoreBtn.parentElement.innerHTML += '<div class="end-of-products">✨ Toutes les montres sont affichées !</div>';
+                }
             } else {
                 loadMoreBtn.style.display = 'inline-flex';
                 loadMoreBtn.innerHTML = `<i class="fas fa-plus-circle"></i> Charger plus de montres (${Math.min(loadMoreCount, products.montres.length - watchesDisplayed)} autres)`;
             }
+            
+            // Observer les nouvelles cartes
+            setTimeout(() => {
+                document.querySelectorAll('#desktop-watches .product-card, #mobile-watches .product-card').forEach(card => {
+                    observer.observe(card);
+                });
+                
+                // Ajouter les événements aux boutons "Détails"
+                document.querySelectorAll('.btn-view-details').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const productData = JSON.parse(this.getAttribute('data-product').replace(/&#39;/g, "'"));
+                        showProductDetails(productData);
+                    });
+                });
+            }, 100);
         }
 
         // Fonction pour afficher les accessoires
@@ -2458,6 +2477,7 @@
             
             // Mettre à jour le compteur
             document.getElementById('accessories-count').textContent = accessoriesDisplayed;
+            document.getElementById('accessories-total').textContent = products.accessoires.length;
             
             // Gérer le bouton "Charger plus" (visible seulement sur desktop)
             const loadMoreBtn = document.getElementById('load-more-accessories');
@@ -2465,11 +2485,29 @@
                 loadMoreBtn.style.display = 'none';
             } else if (accessoriesDisplayed >= products.accessoires.length) {
                 loadMoreBtn.style.display = 'none';
-                loadMoreBtn.parentElement.innerHTML += '<div class="end-of-products">✨ Tous les accessoires sont affichés !</div>';
+                // Ajouter le message de fin si pas déjà présent
+                if (!document.querySelector('#accessories-load-more .end-of-products')) {
+                    loadMoreBtn.parentElement.innerHTML += '<div class="end-of-products">✨ Tous les accessoires sont affichés !</div>';
+                }
             } else {
                 loadMoreBtn.style.display = 'inline-flex';
                 loadMoreBtn.innerHTML = `<i class="fas fa-plus-circle"></i> Charger plus d'accessoires (${Math.min(loadMoreCount, products.accessoires.length - accessoriesDisplayed)} autres)`;
             }
+            
+            // Observer les nouvelles cartes
+            setTimeout(() => {
+                document.querySelectorAll('#desktop-accessories .product-card, #mobile-accessories .product-card').forEach(card => {
+                    observer.observe(card);
+                });
+                
+                // Ajouter les événements aux boutons "Détails"
+                document.querySelectorAll('.btn-view-details').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const productData = JSON.parse(this.getAttribute('data-product').replace(/&#39;/g, "'"));
+                        showProductDetails(productData);
+                    });
+                });
+            }, 100);
         }
 
         // Fonction pour initialiser les carrousels
@@ -2512,7 +2550,7 @@
                     const carousel = document.getElementById(carouselId);
                     if (!carousel) return;
                     
-                    const cardWidth = carousel.querySelector('.product-card').offsetWidth + 20;
+                    const cardWidth = carousel.querySelector('.product-card')?.offsetWidth || 300;
                     const scrollAmount = isPrev ? -cardWidth : cardWidth;
                     
                     carousel.scrollBy({
@@ -2534,8 +2572,8 @@
             if (!carousel || !indicators.length) return;
             
             const scrollPosition = carousel.scrollLeft;
-            const cardWidth = carousel.querySelector('.product-card').offsetWidth + 20;
-            const activeIndex = Math.round(scrollPosition / cardWidth);
+            const cardWidth = carousel.querySelector('.product-card')?.offsetWidth || 300;
+            const activeIndex = Math.round(scrollPosition / (cardWidth + 20));
             
             indicators.forEach((indicator, index) => {
                 indicator.classList.toggle('active', index === activeIndex);
@@ -2771,26 +2809,12 @@
             watchesDisplayed = initialWatchesToShow;
             accessoriesDisplayed = initialAccessoriesToShow;
             
-            // Mettre à jour les compteurs
-            document.getElementById('watches-total').textContent = products.montres.length;
-            document.getElementById('accessories-total').textContent = products.accessoires.length;
-            
             // Afficher les produits
             displayWatches();
             displayAccessories();
             
             // Initialiser les carrousels
             initializeCarousels();
-            
-            // Gérer les événements de clic sur les boutons "Détails"
-            setTimeout(() => {
-                document.querySelectorAll('.btn-view-details').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const productData = JSON.parse(this.getAttribute('data-product').replace(/&#39;/g, "'"));
-                        showProductDetails(productData);
-                    });
-                });
-            }, 100);
             
             // Événement pour le bouton "Charger plus" (desktop)
             document.getElementById('load-more-watches').addEventListener('click', loadMoreWatches);
@@ -2810,6 +2834,13 @@
                     }
                 }, { passive: true });
             }
+            
+            // Observer les cartes initiales
+            setTimeout(() => {
+                document.querySelectorAll('.product-card').forEach(card => {
+                    observer.observe(card);
+                });
+            }, 500);
         });
     </script>
 </body>
